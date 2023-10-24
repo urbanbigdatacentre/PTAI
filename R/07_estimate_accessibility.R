@@ -3,7 +3,6 @@
 
 # Date: 2023-10-23
 
-
 library(tidyverse)
 library(sf)
 library(AccessUK)
@@ -92,7 +91,7 @@ accessibility$walk <- AccessUK::estimate_accessibility(
 # Estimate bike accessibility
 accessibility$bicycle <- AccessUK::estimate_accessibility(
   travel_matrix = 'data/ttm/ttm_bike/', 
-  travel_cost = 'travel_time_p50', 
+  travel_cost = 'travel_time_adj', 
   weights = land_use, 
   time_cut = timecuts
 )
@@ -154,7 +153,7 @@ nearest_opp$walk <- AccessUK::estimate_nearest_opportunity(
 # By bicycle
 nearest_opp$bicycle <- AccessUK::estimate_nearest_opportunity(
   travel_matrix = 'data/ttm/ttm_bike/', 
-  travel_cost = 'travel_time_p50', 
+  travel_cost = 'travel_time_adj', 
   weights = land_use_nearest
 )
 
