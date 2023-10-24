@@ -60,6 +60,10 @@ land_use <- employment %>%
   left_join(sub_bua_count, by = c('lsoa11cd' = 'geo_code')) %>% 
   rename(id = lsoa11cd)
 
+# NAs as 0, assuming there is none of these services
+land_use <- land_use %>% 
+  mutate(across(-id, \(x) replace_na(x, 0)))
+
 # Estimate accessibility  -------------------------------------------------
 
 # Define time cuts
@@ -97,6 +101,7 @@ accessibility$bicycle <- AccessUK::estimate_accessibility(
 accessibility <- bind_rows(accessibility, .id = 'mode')
 
 # Relative accessibility --------------------------------------------------
+
 
 # Total number of opportunities for each service
 total_services <- sapply(land_use[,-1], sum, na.rm = TRUE)
