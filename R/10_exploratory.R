@@ -1,6 +1,6 @@
 # Exploratory
 
-# Date: 2023-10-24
+# Date: 2023-10-26
 
 library(tidyverse)
 
@@ -11,7 +11,7 @@ file_paths <- list.files('output/', recursive = TRUE, full.names = TRUE)
 # Read files
 access_list <- lapply(file_paths, data.table::fread)
 
-# Keep only cum accs
+# Keep absolute cum accessibility measures only
 access_absolute <- access_list %>% 
   map(select, -contains('nearest'), -ends_with('pct'))
 
@@ -44,7 +44,7 @@ access_absolute <- access_absolute %>%
     nation = str_sub(geo_code, 0, 1),
     time_cut = as.integer(time_cut),
     service = gsub('access_', '', service)
-  )
+)
 
 
 
@@ -53,28 +53,36 @@ access_absolute <- access_absolute %>%
 # Aggregate accessibility by mode and type of service
 summary1 <- access_absolute %>% 
   group_by(mode, service, time_cut) %>% 
-  summarise(access_mean = mean(accessibility))
+  summarise(
+    access_mean = mean(accessibility),
+    access_sd = sd(accessibility),
+    access_median = median(accessibility),
+    access_q1 = quantile(accessibility, 0.25),
+    access_q3 = quantile(accessibility, 0.75)
+  )
 
 # LinePlot: accessibility by time cut
 line_plot_comaprison <- summary1 %>% 
   filter(time_cut <= 60) %>% 
   mutate(
-    service = gsub('_', '\n', service),
+    service = gsub('_(?=[a-z])', '\n', service, perl = TRUE),
+    service = gsub('_', ' ', service, perl = TRUE),
     service = str_to_sentence(service)
     ) %>% 
-  ggplot(aes(time_cut, access_mean, col = mode)) +
-  geom_line(linewidth = 1) +
+  ggplot(aes(x = time_cut, group = mode)) +
+  geom_line(aes(y = access_mean, col = mode), linewidth = 1) +
   scale_color_viridis_d(option = 'plasma', begin = 0.15, end = 0.85) +
   facet_wrap(~service, scales = 'free_y') +
   labs(
     x = 'Time (minutes)', 
-    y = 'Average accessibility'
+    y = 'Average accessibility',
+    col = 'mode'
   ) +
   theme_minimal() +
   theme(legend.position = 'bottom')
 
 # Save map
-ggsave('plots/line_plot_comaprison.jpg', dpi = 400, height = 8, width = 10)
+ggsave('plots/line_plot_comaprison.jpg', dpi = 400, height = 7, width = 10)
 
 
 # Places where access by bicycle is higher than PT ------------------------
@@ -92,7 +100,7 @@ lookup <- lookup %>%
   select(lsoa11cd, lad17nm, rgn11nm) %>% 
   distinct()
 
-# Compute differece
+# Compute difference
 access_comparison <- access_absolute %>% 
   pivot_wider(names_from = 'mode', values_from = 'accessibility') %>% 
   rowwise() %>% 
@@ -118,15 +126,16 @@ pt_bike_map <- access_comparison_sf %>%
   geom_sf(aes(fill = bike), col = NA) +
   facet_wrap(~time_cut) +
   labs(
-    title = 'Where can you reach more jobs by bicycle than by public transport in the morning peak?',
+    title = 'Where can you reach more jobs by bicycle than by public transport?', 
+    subtitle = 'Map shoing London at the morning peak.',
     fill = 'More jobs by:'
-    ) +
+  ) +
   scale_fill_viridis_d(option = 'plasma', begin = 0.25, end = 0.75) +
   theme_void() +
   theme(legend.position = 'bottom')
 
 # Save map
-ggsave('plots/pt_vs_bike_map.jpg', dpi = 400, height = 5, width = 9)
+ggsave('plots/pt_vs_bike_map.jpg', pt_bike_map, dpi = 400, height = 5, width = 9)
 
 
 # Nearest facility  -------------------------------------------------------
@@ -157,14 +166,18 @@ access_nearest <- access_nearest %>%
 # Boxplot nearest service
 nearest_boxplot <- access_nearest %>% 
   mutate(
-    service = gsub('_', '\n', service),
-    service = str_to_sentence(service)
+    service = gsub('_(?=[a-z])', '\n', service, perl = TRUE),
+    service = gsub('_', ' ', service, perl = TRUE),
+    service = str_to_sentence(service),
+    service = fct_reorder(service, tt_minutes, .desc = TRUE)
   ) %>% 
   ggplot(aes(tt_minutes, service, fill = mode)) +
   geom_boxplot(outlier.alpha = 0.3, outlier.size = 0.5) +
   scale_fill_viridis_d(option = 'plasma', begin = 0.25, end = 0.75) +
+  coord_cartesian(xlim = c(0, 120)) +
   labs(
     title = 'Nearest facility by mode', 
+    subtitle = 'Plot limited to 120 minutes',
     x = 'Travel time (minutes)', 
     y = 'Service',
     fill = ''
@@ -179,3 +192,12 @@ ggsave(
   height = 8, 
   width = 6
 )
+
+
+# Summary of NA by mode
+# this assumes that the nearest service is > 150 min
+access_nearest %>% 
+  filter(is.na(tt_minutes)) %>% 
+  count(mode, service) %>% 
+  pivot_wider(names_from = 'mode', values_from = 'n')
+
