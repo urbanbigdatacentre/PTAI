@@ -3,6 +3,7 @@
 # Date: 2023-10-26
 
 library(tidyverse)
+library(sf)
 
 # Read data ---------------------------------------------------------------
 
@@ -10,6 +11,36 @@ library(tidyverse)
 file_paths <- list.files('output/', recursive = TRUE, full.names = TRUE)
 # Read files
 access_list <- lapply(file_paths, data.table::fread)
+
+# read TTW areas
+ttwa <- st_read('data/uk_gov/ttwa2011_pop.gpkg')
+# Read centroids
+centroids <- st_read('data/centroids/gb_lsoa_centroid2011.gpkg')
+
+
+
+# Spatially join TTWA to centroids ----------------------------------------
+
+# Identify cities
+ttwa <- ttwa %>%
+  arrange(-total_population) %>% 
+  mutate(
+    pop_ranking = 1:nrow(.),
+    city_large = if_else(pop_ranking < 25, 'city', 'other')
+  )
+
+# Select relevant variables
+ttwa <- ttwa %>% 
+  select(ttwa11nm, city_large, pop_ranking)
+
+# TTWA lookup
+ttwa_lookup <- centroids %>% 
+  select(geo_code) %>% 
+  st_join(ttwa) %>% 
+  st_drop_geometry()
+
+
+# Format accessibility measures -------------------------------------------
 
 # Keep absolute cum accessibility measures only
 access_absolute <- access_list %>% 
@@ -45,7 +76,6 @@ access_absolute <- access_absolute %>%
     time_cut = as.integer(time_cut),
     service = gsub('access_', '', service)
 )
-
 
 
 # Visualisations ----------------------------------------------------------
@@ -105,29 +135,33 @@ access_comparison <- access_absolute %>%
   pivot_wider(names_from = 'mode', values_from = 'accessibility') %>% 
   rowwise() %>% 
   mutate(pt_bike_diff = bicycle / pt) %>% 
-  ungroup() %>% 
-  left_join(lookup, by = c('geo_code' = 'lsoa11cd'))
+  ungroup() 
+
+# Join LSOA/DZ classifications
+access_comparison <- access_comparison %>% 
+  left_join(lookup, by = c('geo_code' = 'lsoa11cd')) %>% 
+  left_join(ttwa_lookup, by = 'geo_code')
 
 # Subset area of interest
 access_comparison_sf <- access_comparison %>%
-  #filter(lad17nm == 'Glasgow City') %>% 
-  filter(rgn11nm == 'London') %>% 
-  filter(service == 'employment_all' & time_cut %in% c(30, 45)) %>% 
+  #filter(ttwa11nm == 'Glasgow') %>%
+  filter(rgn11nm == 'London') %>%
+  filter(service == 'employment_all' & time_cut %in% c(30, 45)) %>%
   mutate(
     bike = if_else(bicycle > pt, 'bike', 'pt')
-  ) %>% 
-  left_join(lsoa_geoms, by = 'geo_code') %>% 
+  ) %>%
+  left_join(lsoa_geoms, by = 'geo_code') %>%
   st_as_sf()
 
 # Map comparison
-pt_bike_map <- access_comparison_sf %>% 
-  mutate(time_cut = factor(time_cut, labels = c('In 30 min', 'In 45 min'))) %>% 
+pt_bike_map <- access_comparison_sf %>%
+  mutate(time_cut = factor(time_cut, labels = c('In 30 min', 'In 45 min'))) %>%
   ggplot() +
   geom_sf(aes(fill = bike), col = NA) +
   facet_wrap(~time_cut) +
   labs(
-    title = 'Where can you reach more jobs by bicycle than by public transport?', 
-    subtitle = 'Map shoing London at the morning peak.',
+    title = 'Where can you reach more jobs by bicycle than by public transport?',
+    subtitle = 'Map showing London at the morning peak.',
     fill = 'More jobs by:'
   ) +
   scale_fill_viridis_d(option = 'plasma', begin = 0.25, end = 0.75) +
@@ -172,7 +206,7 @@ nearest_boxplot <- access_nearest %>%
     service = fct_reorder(service, tt_minutes, .desc = TRUE)
   ) %>% 
   ggplot(aes(tt_minutes, service, fill = mode)) +
-  geom_boxplot(outlier.alpha = 0.3, outlier.size = 0.5) +
+  geom_boxplot(alpha = 0.8, outlier.alpha = 0.3, outlier.size = 0.5) +
   scale_fill_viridis_d(option = 'plasma', begin = 0.25, end = 0.75) +
   coord_cartesian(xlim = c(0, 120)) +
   labs(
