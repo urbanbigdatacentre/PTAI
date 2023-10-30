@@ -8,7 +8,7 @@ library(sf)
 # Read data ---------------------------------------------------------------
 
 # Get file paths
-file_paths <- list.files('output/', recursive = TRUE, full.names = TRUE)
+file_paths <- list.files('output/', recursive = TRUE, full.names = TRUE, pattern = 'access')
 # Read files
 access_list <- lapply(file_paths, data.table::fread)
 
@@ -42,9 +42,9 @@ ttwa_lookup <- centroids %>%
 
 # Format accessibility measures -------------------------------------------
 
-# Keep absolute cum accessibility measures only
-access_absolute <- access_list %>% 
-  map(select, -contains('nearest'), -ends_with('pct'))
+# Keep realtive cum accessibility measures only
+access_relative <- access_list %>% 
+  map(select, -contains('nearest'), -matches('[0-9]$'))
 
 # Keep time of the day AM only
 filter_tod <- function(df) {
@@ -54,12 +54,13 @@ filter_tod <- function(df) {
   }
   return(df)
 }
-access_absolute <- access_absolute %>% 
+access_relative <- access_relative %>% 
   map(filter_tod) %>% 
   map(select, geo_code, mode, starts_with('access'))
 
 # Measures into single DF
-access_absolute <- access_absolute %>% 
+access_relative <- access_relative %>% 
+  map(~rename_with(.x, \(colname) gsub('_pct', '', colname))) %>% 
   map(
     pivot_longer, 
     starts_with('access'), 
@@ -70,18 +71,20 @@ access_absolute <- access_absolute %>%
   bind_rows()
 
 # Format variables
-access_absolute <- access_absolute %>% 
+access_relative <- access_relative %>% 
   mutate(
     nation = str_sub(geo_code, 0, 1),
     time_cut = as.integer(time_cut),
     service = gsub('access_', '', service)
-)
+  )
 
 
 # Visualisations ----------------------------------------------------------
 
+mode_labs <- c('Bicycle', 'Public transport', 'Walk')
+
 # Aggregate accessibility by mode and type of service
-summary1 <- access_absolute %>% 
+summary1 <- access_relative %>% 
   group_by(mode, service, time_cut) %>% 
   summarise(
     access_mean = mean(accessibility),
@@ -98,21 +101,22 @@ line_plot_comaprison <- summary1 %>%
     service = gsub('_(?=[a-z])', '\n', service, perl = TRUE),
     service = gsub('_', ' ', service, perl = TRUE),
     service = str_to_sentence(service)
-    ) %>% 
+  ) %>% 
   ggplot(aes(x = time_cut, group = mode)) +
   geom_line(aes(y = access_mean, col = mode), linewidth = 1) +
   scale_color_viridis_d(option = 'plasma', begin = 0.15, end = 0.85) +
+  scale_y_continuous(labels = scales::unit_format(unit = '', accuracy = 0.1)) +
   facet_wrap(~service, scales = 'free_y') +
   labs(
     x = 'Time (minutes)', 
-    y = 'Average accessibility',
-    col = 'mode'
+    y = 'Average relative accessibility (%)',
+    col = 'Mode'
   ) +
   theme_minimal() +
   theme(legend.position = 'bottom')
 
 # Save map
-ggsave('plots/line_plot_comaprison.jpg', dpi = 400, height = 7, width = 10)
+ggsave('plots/line_plot_comaprison.jpg',plot = line_plot_comaprison, dpi = 400, height = 7, width = 10)
 
 
 # Places where access by bicycle is higher than PT ------------------------
