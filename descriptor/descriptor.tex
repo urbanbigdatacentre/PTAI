@@ -1,0 +1,523 @@
+\documentclass{article}
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{lmodern}        % https://github.com/rstudio/rticles/issues/343
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{graphicx}
+
+\title{Great Britain Accessibility Indicators 2023: Data descriptor}
+
+\author{
+    J Rafael Verduzco-Torres
+   \\
+    Urban Big Data Centre \\
+    University of Glasgow \\
+  Glasgow, G12 8RZ \\
+  \texttt{\href{mailto:JoseRafael.Verduzco-Torres@glasgow.ac.uk}{\nolinkurl{JoseRafael.Verduzco-Torres@glasgow.ac.uk}}} \\
+   \And
+    David P McArthur
+   \\
+    Urban Big Data Centre \\
+    University of Glasgow \\
+  Glasgow, G12 8RZ \\
+  \texttt{\href{mailto:David.Mcarthur@glasgow.ac.uk}{\nolinkurl{David.Mcarthur@glasgow.ac.uk}}} \\
+  }
+
+
+% tightlist command for lists without linebreak
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+% Pandoc citation processing
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+% for Pandoc 2.8 to 2.10.1
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
+% For Pandoc 2.11+
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{amsmath}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+This document describes accessibility indicators for Great Britain 2023
+dataset.
+\end{abstract}
+
+\keywords{
+    Accessibility
+   \and
+    Transport
+   \and
+    Active travel
+   \and
+    Health
+   \and
+    Employment
+  }
+
+\hypertarget{background-summary}{%
+\section{Background \& Summary}\label{background-summary}}
+
+Accessibility indicators measure the ease of reaching valuable
+destinations (Levinson and Wu 2020). The Great Britain Accessibility
+Indicators 2023 (AI23) dataset offers small area indicators to key
+services, such as: health, education, employment, and urban centres.
+This is an updated and extended version of the Public Transport
+Accessibility Indicators for Great Britain 2022 (PTAI22) dataset
+described here: \url{https://zenodo.org/records/6759240} (J. Rafael
+Verduzco Torres and McArthur 2022).
+
+The products described here represent a snapshot of the first quarter of
+2023, while the PTAI22 is an earlier version corresponding to the last
+quarter of 2021. The indicators of the AI23, where applicable, are
+directly comparable to the previous version. The AI23 is extended in the
+following ways compared to the PTAI22:
+
+\begin{itemize}
+\tightlist
+\item
+  In addition to public transport, this version considers active modes
+  namely, walk and bicycle.
+\item
+  Also, accessibility to employment is disaggregated according to the UK
+  Standard Industrial Classification of Economic Activities (UK SIC).
+\item
+  Furthermore, the AI23 dataset includes pharmacies as an additional
+  health destination.
+\item
+  The public transport indicators are not only offered for the morning
+  peak, but also at the evening off-peak.
+\end{itemize}
+
+In sum, the present dataset encompasses a set of ready-to-use
+accessibility indicators to employment, general practices (GPs),
+hospitals, pharmacies, primary schools, secondary schools, supermarkets,
+main urban centres, and urban sub-centres. These are offered for 42,000
+small area units in GB, namely at the lower super output area (LSOA) in
+England and Wales, and the data zone (DZ) in Scotland.
+
+Research has used accessibility indicators to study a wide variety of
+regional and urban outcomes, such as unemployment rates in the labour
+market (Bastiaanssen, Johnson, and Lucas 2022), vaccination uptake in
+public health (Chen et al. 2023), and residential prices in the property
+market (José Rafael Verduzco Torres 2023a). Similarly, these are gaining
+relevance in planning and policy making as input for developing
+comprehensive project appraisal (Cavallaro, Bruzzone, and Nocera 2023),
+20-minute analyses, and as performance benchmark.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+The methods and sources employed for the present dataset largely follow
+those described in the earlier version
+(\url{https://zenodo.org/records/6759240} (J. Rafael Verduzco Torres and
+McArthur 2022)). The reminding of the paper focuses on the key aspects
+or extensions of the present version.
+
+The accessibility indicators, \(A\), are constructured using
+location-based measures. These include cumulative, relative cumulative,
+and dual or nearest opportunity measures. Location-based measures are
+estimated from an origin \(i\) and consider opportunities of type
+\(W_k\) at potential destinations \(j\). The cumulative measures are
+estimated according to the following equation.
+
+\[
+\begin{aligned}
+A_{ik} &= \sum_{j=1}^{n} W_{jk} f(t_{ij}) \\
+f(t_{ij}) &= \left\{
+      \begin{array}{ll}
+          1 & \quad \text{if }t_{ij} \leq \bar{t} \text{ (threshold value)} \\
+          0 & \quad \text{otherwise}.
+      \end{array}
+    \right.
+\end{aligned}
+\]
+
+Here, it is assumed that people deem opportunities or services as
+reachable if the modelled travel time between the the origin and
+destination, \(t{ij}\), is equal or shorter than given threshold,
+\(\bar{t}\). All services beyond this limit are disregarded. Relative
+cumulative measures inputs the size of the service weighted by the total
+number in the region, i.e.~\(W_{jk} / W_k\). Meanwhile, the dual or
+nearest opportunity considers the minimum travel time to a destination
+where the size of the service is larger that 0. In other words, these
+represent the shortest travel time to the nearest facility of type
+\(k\), as illustrated in the equation below.
+
+\[
+A_{ik} = \min_{j=1}^{n} \{ t_{ij} : W_{kj} > 0 \}
+\]
+
+The measures are computed using the \texttt{AccessUK} package for the
+\texttt{R} language v0.0.1-alpha (José Rafael Verduzco Torres 2023b).
+
+\hypertarget{origins}{%
+\subsection{Origins}\label{origins}}
+
+The population weighted centroid of each of the 41,729 LSOA/DZ are
+considered as the origins in accessibility measures measures. These
+correspond to the 2011 Census (version last updated in 21 December 2019
+for England and Wales, and 26 March 2021 for Scotland).
+
+\hypertarget{key-services-at-destinations}{%
+\subsection{Key services at
+destinations}\label{key-services-at-destinations}}
+
+Although the indicators consider the same sources of information to
+account for the location of services, the closest version available to
+the first quarter of 2023 is used unless specified otherwise. Table 1
+shows a summary of the total number of services for the different
+versions of the accessibility indicators. These display small negative
+or positive variations. The urban centre data employs the same input
+data. Thus, the figures remain unchanged.
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-2}Destionation summary}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedright}X}
+\toprule
+Destination & Total in 2022
+(PTAI22) & Total in 2023
+(AI23)\\
+\midrule
+Employment & 30 067 975 & 30 898 620\\
+GPs & 7 887 & 7 756\\
+Hospitals & 1 510 & 1 572\\
+Pharmacies & NA & 12 983\\
+Primary schools & 19 853 & 19 830\\
+\addlinespace
+Secondary schools & 3 457 & 3 466\\
+Supermarkets & 6 478 & 6 392\\
+Urban centre: Main & 182 & 182\\
+Urban centre: Subcentre & 421 & 421\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\hypertarget{employment}{%
+\subsubsection{Employment}\label{employment}}
+
+In addition to accessibility to all types of employment, the AI23
+dataset offers measures disaggregated by broad industrial group
+according to the UK SIC (see the following URL for a detailed
+description of the classification used:
+\url{https://www.ons.gov.uk/methodology/classificationsandstandards/ukstandardindustrialclassificationofeconomicactivities}).
+Table 2 presents the UK SIC grouping equivalence with the names used for
+the accessibility indicators.
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-3}Broad industrial groups abbreviation}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedright}X}
+\toprule
+Inidcator name in the IA23 & SIC broad group classification\\
+\midrule
+employment\_agriculture\_1 & 1 : Agriculture, forestry \& fishing (A)\\
+employment\_mining\_2 & 2 : Mining, quarrying \& utilities (B,D and E)\\
+employment\_manufacturing\_3 & 3 : Manufacturing (C)\\
+employment\_construction\_4 & 4 : Construction (F)\\
+employment\_motor\_5 & 5 : Motor trades (Part G)\\
+\addlinespace
+employment\_wholesale\_6 & 6 : Wholesale (Part G)\\
+employment\_retail\_7 & 7 : Retail (Part G)\\
+employment\_transport\_8 & 8 : Transport \& storage (inc postal) (H)\\
+employment\_accommodation\_9 & 9 : Accommodation \& food services (I)\\
+employment\_information\_10 & 10 : Information \& communication (J)\\
+\addlinespace
+employment\_financial\_11 & 11 : Financial \& insurance (K)\\
+employment\_property\_12 & 12 : Property (L)\\
+employment\_professional\_13 & 13 : Professional, scientific \& technical (M)\\
+employment\_business\_14 & 14 : Business administration \& support services (N)\\
+employment\_public\_15 & 15 : Public administration \& defence (O)\\
+\addlinespace
+employment\_education\_16 & 16 : Education (P)\\
+employment\_health\_17 & 17 : Health (Q)\\
+employment\_arts\_18 & 18 : Arts, entertainment, recreation \& other services (R,S,T and U)\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\hypertarget{pharmacies}{%
+\subsubsection{Pharmacies}\label{pharmacies}}
+
+The location of pharmacies was obtained from official public health
+records. The data for England comes from the `Consolidated
+Pharmaceutical List' corresponding to the 2023-24 quarter 1. This was
+manually downloaded from the NHS Data portal
+(\url{https://opendata.nhsbsa.net/dataset/consolidated-pharmaceutical-list}).
+The location of pharmacies in Scotland was accessed from the Public
+Health Scotland platform. The `Dispenser Details January 2023' dataset
+was downloaded from the URL:
+\url{https://www.opendata.nhs.scot/dataset/dispenser-location-contact-details/resource/f44e6a10-4f1f-4ffd-9205-956944bacf95}.
+The information for Wales was available from NHS website. The `Pharmacy
+Chains' dataset used corresponds to June 2023 (URL:
+\url{https://nwssp.nhs.wales/ourservices/primary-care-services/general-information/data-and-publications/pharmacies-in-wales/}).
+These data contain address references including the postcode, which was
+matched with the ONS postcode dataset to assign a corresponding LSOA/DZ
+code.
+
+\hypertarget{hospitals}{%
+\subsubsection{Hospitals}\label{hospitals}}
+
+The sources and selection criterion to account for the location of
+hospitals remains unchanged and uses the official updated datasets
+except for Wales. In the latter case, the PTAI22 used the list of
+addresses available on the Health in Wales website
+(\url{http://www.wales.nhs.uk/}). However, this is no longer active.
+Thus, we used the locations obtained in January 2022.
+
+\hypertarget{travel-costs}{%
+\subsection{Travel costs}\label{travel-costs}}
+
+Travel costs in the accessibility indicators \(t_{ij}\) are represented
+by the modelled travel time by public transport, bicycle, and walk. The
+AI23 use a series of all-to-all travel time matrices computed from each
+LSOA/DZ population weighted centroids using \texttt{R5R} software
+(Saraiva et al. 2021) for the \texttt{R} programming language. The main
+inputs used are the OpenStreetMap road and pedestrian network, bus time
+tables from Bus Open Data Service (BODS)
+(\url{https://www.gov.uk/transport/bus-services-routes-and-timetables}),
+and train time tables from the Rail Delivery Group
+(\url{https://www.raildeliverygroup.com/}). The public transport
+indicators are estimated for two times of departure, namely 7 a.m. and 9
+p.m. on the 7th of March 2023, considering a three hours time window.
+Additional details are offered in a separate data descriptor {[}PENDING
+REFERENCE{]}.
+
+\hypertarget{data-records}{%
+\section{Data records}\label{data-records}}
+
+The accessibility indicators are offered in a series of \texttt{CSV}
+files. These are organised by the type of opportunity or service at the
+folder level, and by mode at the file level, as shown in the directory
+tree diagram below. The structure of the directories is as following:
+\texttt{root/{[}NAME\ OF\ SERVICE{]}/access\_{[}NAME\ OF\ SERVICE{]}\_{[}MODE{]}.csv},
+where `pt' stands for public transport in the `MODE' element. To
+increase visibility, the diagram omits the dissaggregated employment
+measures. However, \protect\hyperlink{inventory}{Appendix} includes a
+detailed inventory of all the files in the dataset.
+
+\begin{verbatim}
+## ../output/
+## +-- employment_all
+## |   +-- access_employment_all_bicycle.csv
+## |   +-- access_employment_all_pt.csv
+## |   \-- access_employment_all_walk.csv
+## +-- gp_practices
+## |   +-- access_gp_practices_bicycle.csv
+## |   +-- access_gp_practices_pt.csv
+## |   \-- access_gp_practices_walk.csv
+## +-- hospitals
+## |   +-- access_hospitals_bicycle.csv
+## |   +-- access_hospitals_pt.csv
+## |   \-- access_hospitals_walk.csv
+## +-- main_bua
+## |   +-- access_main_bua_bicycle.csv
+## |   +-- access_main_bua_pt.csv
+## |   \-- access_main_bua_walk.csv
+## +-- pharmacies
+## |   +-- access_pharmacies_bicycle.csv
+## |   +-- access_pharmacies_pt.csv
+## |   \-- access_pharmacies_walk.csv
+## +-- primary_schools
+## |   +-- access_primary_schools_bicycle.csv
+## |   +-- access_primary_schools_pt.csv
+## |   \-- access_primary_schools_walk.csv
+## +-- secondary_schools
+## |   +-- access_secondary_schools_bicycle.csv
+## |   +-- access_secondary_schools_pt.csv
+## |   \-- access_secondary_schools_walk.csv
+## +-- sub_bua
+## |   +-- access_sub_bua_bicycle.csv
+## |   +-- access_sub_bua_pt.csv
+## |   \-- access_sub_bua_walk.csv
+## +-- supermarkets
+## |   +-- access_supermarkets_bicycle.csv
+## |   +-- access_supermarkets_pt.csv
+## |   \-- access_supermarkets_walk.csv
+## \-- variable_descriptor.csv
+\end{verbatim}
+
+The \texttt{root/variable\_descriptor.csv} file details the structure
+and contents within each of the files outlined in the diagram. This is
+shown in Table 3. These contain the corresponding 2011 Census LSOA/DZ
+code in the first column. The `mode' column refers to the form of
+transport considered for the indicators. Only for public transport
+measures contain the column `time\_of\_day', which refers to one of the
+two time of departures estimated, namely `am' or `pm'. The
+`accessibility' prefix of the columns refers to cumulative measures.
+This is given for eight 15-minute time cuts between 15 and 120 minutes.
+The relative measures are identified with the `pct' suffix. The
+`nearest\_{[}NAME OF SERVICE{]}' column is the travel time in minutes to
+the nearest service of type \(k\). This is not available for employment,
+as this is treated as aggregated at destinations from source.
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-5}Variable descriptor}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedright}X}
+\toprule
+Variable & Description\\
+\midrule
+geo\_code & 2011 LSOA/DZ geo-code of origin\\
+mode & Mode of transport used for the indicators, values: 'pt' = public transport, 'bicycle', 'walk'\\
+time\_of\_day & Time of departure, values: 'am' = 7 a.m., 'pm' = 9 p.m. Available for public transport only.\\
+access\_[NAME OF SERVICE]\_15 & Cumulative accessibility: Number of services of type k within 15 minutes\\
+access\_[NAME OF SERVICE]\_30 & Cumulative accessibility: Number of services of type k within 30 minutes\\
+\addlinespace
+access\_[NAME OF SERVICE]\_45 & Cumulative accessibility: Number of services of type k within 45 minutes\\
+access\_[NAME OF SERVICE]\_60 & Cumulative accessibility: Number of services of type k within 60 minutes\\
+access\_[NAME OF SERVICE]\_75 & Cumulative accessibility: Number of services of type k within 75 minutes\\
+access\_[NAME OF SERVICE]\_90 & Cumulative accessibility: Number of services of type k within 90 minutes\\
+access\_[NAME OF SERVICE]\_105 & Cumulative accessibility: Number of services of type k within 105 minutes\\
+\addlinespace
+access\_[NAME OF SERVICE]\_120 & Cumulative accessibility: Number of services of type k within 120 minutes\\
+access\_[NAME OF SERVICE]\_15\_pct & Relative cumulative accessibility: Number of services of type k within 15 minutes\\
+access\_[NAME OF SERVICE]\_30\_pct & Relative cumulative accessibility: Number of services of type k within 30 minutes\\
+access\_[NAME OF SERVICE]\_45\_pct & Relative cumulative accessibility: Number of services of type k within 45 minutes\\
+access\_[NAME OF SERVICE]\_60\_pct & Relative cumulative accessibility: Number of services of type k within 60 minutes\\
+\addlinespace
+access\_[NAME OF SERVICE]\_75\_pct & Relative cumulative accessibility: Number of services of type k within 75 minutes\\
+access\_[NAME OF SERVICE]\_90\_pct & Relative cumulative accessibility: Number of services of type k within 90 minutes\\
+access\_[NAME OF SERVICE]\_105\_pct & Relative cumulative accessibility: Number of services of type k within 105 minutes\\
+access\_[NAME OF SERVICE]\_120\_pct & Relative cumulative accessibility: Number of services of type k within 120 minutes\\
+nearest\_[NAME OF SERVICE] & Travel time in minutes to the nearest service of type k\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\hypertarget{technical-validation}{%
+\section{Technical validation}\label{technical-validation}}
+
+\hypertarget{usage-notes}{%
+\section{Usage notes}\label{usage-notes}}
+
+\hypertarget{code-availability}{%
+\section*{Code availability}\label{code-availability}}
+\addcontentsline{toc}{section}{Code availability}
+
+All the code used to generate this data set is openly avaiable in the
+following GitHub repository:
+\url{https://github.com/urbanbigdatacentre/accessibility_indices23}.
+
+\hypertarget{acknowledgement}{%
+\section*{Acknowledgement}\label{acknowledgement}}
+\addcontentsline{toc}{section}{Acknowledgement}
+
+This work was made possible by ESRC's on-going support for the Urban Big
+Data Centre {[}ES/L011921/1 and ES/S007105/1{]}.
+
+\hypertarget{inventory}{%
+\section{Appendix 1. Inventory file}\label{inventory}}
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-Bastiaanssen2022}{}}%
+Bastiaanssen, Jeroen, Daniel Johnson, and Karen Lucas. 2022. {``Does
+Better Job Accessibility Help People Gain Employment? {The} Role of
+Public Transport in {Great Britain}.''} \emph{Urban Studies} 59 (2):
+301--22. \url{https://doi.org/10.1177/00420980211012635}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Cavallaro2023}{}}%
+Cavallaro, Federico, Francesco Bruzzone, and Silvio Nocera. 2023.
+{``Effects of High-Speed Rail on Regional Accessibility.''}
+\emph{Transportation} 50 (5): 1685--1721.
+\url{https://doi.org/10.1007/s11116-022-10291-y}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Chen2023}{}}%
+Chen, Huanfa, Yanjia Cao, Lingru Feng, Qunshan Zhao, and J. Rafael
+Verduzco Torres. 2023. {``Understanding the Spatial Heterogeneity of
+{COVID-19} Vaccination Uptake in {England}.''} \emph{BMC Public Health}
+23 (1): 895. \url{https://doi.org/10.1186/s12889-023-15801-w}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Levinson2020}{}}%
+Levinson, David M, and Hao Wu. 2020. {``Towards a General Theory of
+Access.''} \emph{Journal of Transport and Land Use} 13 (1, 1): 129--58.
+\url{https://doi.org/10.5198/jtlu.2020.1660}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-r5r}{}}%
+Saraiva, Marcus, Rafael H. M. Pereira, Daniel Herszenhut, Carlos Kaue
+Vieira Braga, and Matthew Wigginton Conway. 2021. \emph{R5r: {Rapid}
+Realistic Routing with {R5}}. Manual.
+\url{https://github.com/ipeaGIT/r5r}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-VerduzcoTorres2022}{}}%
+Verduzco Torres, J. Rafael, and David McArthur. 2022. {``Accessibility
+{Indicators} for {Great Britain}.''} Preprint. June 27, 2022.
+\url{https://doi.org/10.5281/zenodo.6759240}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-VerduzcoTorres2023}{}}%
+Verduzco Torres, José Rafael. 2023a. {``Revisiting the Capitalization of
+Public Transport Accessibility into Residential Land Value: An Empirical
+Analysis Drawing on {Open Science}.''} PhD thesis, {Glasgow}:
+{University of Glasgow}. \url{http://theses.gla.ac.uk/id/eprint/83588}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-VerduzcoTorres2023a}{}}%
+---------. 2023b. \emph{{AccessUK}} (version v0.0.1-alpha). {Glasgow}:
+{University of Glasgow}.
+\url{https://github.com/urbanbigdatacentre/AccessUK}.
+
+\end{CSLReferences}
+
+\bibliographystyle{unsrt}
+\bibliography{references.bib}
+
+
+\end{document}

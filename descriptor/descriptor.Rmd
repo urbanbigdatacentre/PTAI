@@ -1,0 +1,187 @@
+---
+title: "Great Britain Accessibility Indicators 2023: Data descriptor"
+authors:
+  - name: J Rafael Verduzco-Torres
+    department: Urban Big Data Centre
+    affiliation: University of Glasgow
+    location: Glasgow, G12 8RZ 
+    email: JoseRafael.Verduzco-Torres@glasgow.ac.uk
+  - name: David P McArthur
+    department: Urban Big Data Centre
+    affiliation: University of Glasgow
+    location: Glasgow, G12 8RZ 
+    email: David.Mcarthur@glasgow.ac.uk
+abstract: |
+  This document describes accessibility indicators for Great Britain 2023 dataset.
+keywords:
+  - Accessibility
+  - Transport
+  - Active travel
+  - Health
+  - Employment
+bibliography: references.bib
+biblio-style: unsrt
+output: rticles::arxiv_article
+header-includes:
+  - \usepackage{amsmath}
+  - \usepackage{setspace}
+  - \onehalfspacing
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+
+```{r}
+# Packages
+library(kableExtra)
+library(tidyverse)
+# Fn format big number
+format2 <- function(x, digits = 0)  formatC(x, format="f", big.mark=" ", digits=digits)
+```
+
+# Background & Summary
+
+Accessibility indicators measure the ease of reaching valuable destinations [@Levinson2020]. The Great Britain Accessibility Indicators 2023 (AI23) dataset offers small area indicators to key services, such as: health, education, employment, and urban centres. This is an updated and extended version of the Public Transport Accessibility Indicators for Great Britain 2022 (PTAI22) dataset described here: <https://zenodo.org/records/6759240> [@VerduzcoTorres2022].
+
+The products described here represent a snapshot of the first quarter of 2023, while the PTAI22 is an earlier version corresponding to the last quarter of 2021. The indicators of the AI23, where applicable, are directly comparable to the previous version. The AI23 is extended in the following ways compared to the PTAI22:
+
+* In addition to public transport, this version considers active modes namely, walk and bicycle.
+* Also, accessibility to employment is disaggregated according to the UK Standard Industrial Classification of Economic Activities (UK SIC).
+* Furthermore, the AI23 dataset includes pharmacies as an additional health destination.
+* The public transport indicators are not only offered for the morning peak, but also at the evening off-peak.
+
+In sum, the present dataset encompasses a set of ready-to-use accessibility indicators to employment, general practices (GPs), hospitals, pharmacies, primary schools, secondary schools, supermarkets, main urban centres, and urban sub-centres. These are offered for 42,000 small area units in GB, namely at the lower super output area (LSOA) in England and Wales, and the data zone (DZ) in Scotland.
+
+Research has used accessibility indicators to study a wide variety of regional and urban outcomes, such as unemployment rates in the labour market [@Bastiaanssen2022], vaccination uptake in public health [@Chen2023], and residential prices in the property market [@VerduzcoTorres2023]. Similarly, these are gaining relevance in planning and policy making as input for developing comprehensive project appraisal [@Cavallaro2023], 20-minute analyses, and as performance benchmark.
+
+# Methods
+
+The methods and sources employed for the present dataset largely follow those described in the earlier version (<https://zenodo.org/records/6759240> [@VerduzcoTorres2022]). The reminding of the paper focuses on the key aspects or extensions of the present version.
+
+The accessibility indicators, $A$, are constructured using location-based measures. These include cumulative, relative cumulative, and dual or nearest opportunity  measures. Location-based measures are estimated from an origin $i$ and consider opportunities of type $W_k$ at potential destinations $j$. The cumulative measures are estimated according to the following equation.
+
+$$
+\begin{aligned}
+A_{ik} &= \sum_{j=1}^{n} W_{jk} f(t_{ij}) \\
+f(t_{ij}) &= \left\{
+      \begin{array}{ll}
+          1 & \quad \text{if }t_{ij} \leq \bar{t} \text{ (threshold value)} \\
+          0 & \quad \text{otherwise}.
+      \end{array}
+    \right.
+\end{aligned}
+$$
+
+Here, it is assumed that people deem opportunities or services as reachable if the modelled travel time between the the origin and destination, $t{ij}$, is equal or shorter than given threshold, $\bar{t}$. All services beyond this limit are disregarded. Relative cumulative measures inputs the size of the service weighted by the total number in the region, i.e. $W_{jk} / W_k$. Meanwhile, the dual or nearest opportunity considers the minimum travel time to a destination where the size of the service is larger that 0. In other words, these represent the shortest travel time to the nearest facility of type $k$, as illustrated in the equation below.
+
+$$
+A_{ik} = \min_{j=1}^{n} \{ t_{ij} : W_{kj} > 0 \}
+$$
+
+The measures are computed using the `AccessUK` package for the `R` language v0.0.1-alpha [@VerduzcoTorres2023a].
+
+## Origins
+
+The population weighted centroid of each of the 41,729 LSOA/DZ are considered as the origins in accessibility measures measures. These correspond to the 2011 Census (version last updated in 21 December 2019 for England and Wales, and 26 March 2021 for Scotland).
+
+## Key services at destinations
+
+Although the indicators consider the same sources of information to account for the location of services, the closest version available to the first quarter of 2023 is used unless specified otherwise. Table 1 shows a summary of the total number of services for the different versions of the accessibility indicators. These display small negative or positive variations. The urban centre data employs the same input data. Thus, the figures remain unchanged.
+
+```{r}
+# Read summary
+destination_source <- read_csv('tables/destination_summary.csv')
+
+# Col names
+col_names <- c('Destination', 'Total in 2022\n(PTAI22)', 'Total in 2023\n(AI23)')
+# Print table
+destination_source %>%
+  mutate(across(starts_with('total'), \(x)  format2(x))) %>% 
+  kbl(
+    col.names = col_names,
+    caption = 'Destionation summary',
+    booktabs = T, 
+    escape = FALSE
+    ) %>%
+  kable_styling(full_width = T, latex_options = "hold_position") 
+```
+
+### Employment
+
+In addition to accessibility to all types of employment, the AI23 dataset offers measures disaggregated by broad industrial group according to the UK SIC (see the following URL for a detailed description of the classification used: <https://www.ons.gov.uk/methodology/classificationsandstandards/ukstandardindustrialclassificationofeconomicactivities>). Table 2 presents the UK SIC grouping equivalence with the names used for the accessibility indicators.
+
+```{r}
+# Read summary
+industrial_groups <- read_csv('tables/industrial_groups.csv')
+
+# Col names
+col_names <- c('Inidcator name in the IA23', 'SIC broad group classification')
+# Print table
+industrial_groups %>%
+  kbl(
+    col.names = col_names,
+    caption = 'Broad industrial groups abbreviation',
+    booktabs = T
+    ) %>%
+  kable_styling(full_width = T, latex_options = "hold_position") 
+```
+
+### Pharmacies
+
+The location of pharmacies was obtained from official public health records. The data for England comes from the 'Consolidated Pharmaceutical List' corresponding to the 2023-24 quarter 1. This was manually downloaded from the NHS Data portal (<https://opendata.nhsbsa.net/dataset/consolidated-pharmaceutical-list>). The location of pharmacies in Scotland was accessed from the Public Health Scotland platform. The 'Dispenser Details January 2023' dataset was downloaded from the URL: <https://www.opendata.nhs.scot/dataset/dispenser-location-contact-details/resource/f44e6a10-4f1f-4ffd-9205-956944bacf95>. The information for Wales was available from NHS website. The 'Pharmacy Chains' dataset used corresponds to June 2023 (URL: <https://nwssp.nhs.wales/ourservices/primary-care-services/general-information/data-and-publications/pharmacies-in-wales/>). These data contain address references including the postcode, which was matched with the ONS postcode dataset to assign a corresponding LSOA/DZ code.
+
+### Hospitals
+
+The sources and selection criterion to account for the location of hospitals remains unchanged and uses the official updated datasets except for Wales. In the latter case, the PTAI22 used the list of addresses available on the Health in Wales website (<http://www.wales.nhs.uk/>). However, this is no longer active. Thus, we used the locations obtained in January 2022.
+
+## Travel costs
+
+Travel costs in the accessibility indicators $t_{ij}$ are represented by the modelled travel time  by public transport, bicycle, and walk. The AI23 use a series of all-to-all travel time matrices computed from each LSOA/DZ population weighted centroids using `R5R` software [@R-r5r] for the `R` programming language. The main inputs used are the OpenStreetMap road and pedestrian network, bus time tables from Bus Open Data Service (BODS) (<https://www.gov.uk/transport/bus-services-routes-and-timetables>), and train time tables from the Rail Delivery Group (<https://www.raildeliverygroup.com/>). The public transport indicators are estimated for two times of departure, namely 7 a.m. and 9 p.m. on the 7th of March 2023, considering a three hours time window. Additional details are offered in a separate data descriptor [PENDING REFERENCE].
+
+# Data records
+
+The accessibility indicators are offered in a series of `CSV` files. These are organised by the type of opportunity or service at the folder level, and by mode at the file level, as shown in the directory tree diagram below. The structure of the directories is as following: `root/[NAME OF SERVICE]/access_[NAME OF SERVICE]_[MODE].csv`, where 'pt' stands for public transport in the 'MODE' element. To increase visibility, the diagram omits the dissaggregated employment measures. However, [Appendix 1](#inventory) includes a detailed inventory of all the files in the dataset.
+
+```{r}
+fs::dir_tree('../output/', recurse = TRUE, regexp = '[0-9]', invert = TRUE)
+```
+
+The `root/variable_descriptor.csv` file details the structure and contents within each of the files outlined in the diagram. This is shown in Table 3. These contain the corresponding 2011 Census LSOA/DZ code in the first column. The 'mode' column refers to the form of transport considered for the indicators. Only for public transport measures contain the column 'time_of_day', which refers to one of the two time of departures estimated, namely 'am' or 'pm'. The 'accessibility' prefix of the columns refers to cumulative measures. This is given for eight 15-minute time cuts between 15 and 120 minutes. The relative measures are identified with the 'pct' suffix. The 'nearest_[NAME OF SERVICE]' column is the travel time in minutes to the nearest service of type $k$. This is not available for employment, as this is treated as aggregated at destinations from source.
+
+```{r}
+# Read descriptor
+variable_descriptor <- read_csv('../output/variable_descriptor.csv')
+
+# Print table
+variable_descriptor %>%
+  kbl(
+    caption = 'Variable descriptor',
+    booktabs = T
+    ) %>%
+  kable_styling(full_width = T, latex_options = "hold_position") 
+```
+
+
+
+
+# Technical validation
+
+
+# Usage notes
+
+
+# Code availability{-}
+
+All the code used to generate this data set is openly avaiable in the following GitHub repository: <https://github.com/urbanbigdatacentre/accessibility_indices23>.
+
+# Acknowledgement{-}
+
+This work was made possible by ESRC’s on-going support for the Urban Big Data Centre [ES/L011921/1 and ES/S007105/1].
+
+# Appendix 1. Inventory file{#inventory}
+
+
+
+# References{-}

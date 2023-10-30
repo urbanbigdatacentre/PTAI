@@ -1,0 +1,19 @@
+﻿abbreviation,broad_group
+employment_agriculture_1,"1 : Agriculture, forestry & fishing (A)"
+employment_mining_2,"2 : Mining, quarrying & utilities (B,D and E)"
+employment_manufacturing_3,3 : Manufacturing (C)
+employment_construction_4,4 : Construction (F)
+employment_motor_5,5 : Motor trades (Part G)
+employment_wholesale_6,6 : Wholesale (Part G)
+employment_retail_7,7 : Retail (Part G)
+employment_transport_8,8 : Transport & storage (inc postal) (H)
+employment_accommodation_9,9 : Accommodation & food services (I)
+employment_information_10,10 : Information & communication (J)
+employment_financial_11,11 : Financial & insurance (K)
+employment_property_12,12 : Property (L)
+employment_professional_13,"13 : Professional, scientific & technical (M)"
+employment_business_14,14 : Business administration & support services (N)
+employment_public_15,15 : Public administration & defence (O)
+employment_education_16,16 : Education (P)
+employment_health_17,17 : Health (Q)
+employment_arts_18,"18 : Arts, entertainment, recreation & other services (R,S,T and U)"
