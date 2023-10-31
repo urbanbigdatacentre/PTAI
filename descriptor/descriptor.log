@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  30 OCT 2023 12:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  31 OCT 2023 14:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -359,8 +359,6 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
-) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
-Package: setspace 2022/12/04 v6.7b set line spacing
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTleft=\skip75
@@ -504,7 +502,7 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 87.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 85.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -514,24 +512,24 @@ File: l3backend-pdftex.def 2023-10-23 L3 backend support: PDF output (pdfTeX)
 ) (./descriptor.aux)
 \openout1 = `descriptor.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -598,26 +596,24 @@ LaTeX Font Info:    ... okay on input line 87.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 87.
+Package hyperref Info: Link coloring OFF on input line 85.
 (./descriptor.out) (./descriptor.out)
 \@outlinefile=\write3
 \openout3 = `descriptor.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 87.
-Package microtype Info: Applying patch `item' on input line 87.
-Package microtype Info: Applying patch `toc' on input line 87.
-Package microtype Info: Applying patch `eqnum' on input line 87.
-
-Package microtype Warning: Unable to apply patch `footnote' on input line 87.
-
-Package microtype Info: Applying patch `verbatim' on input line 87.
+LaTeX Info: Redefining \microtypecontext on input line 85.
+Package microtype Info: Applying patch `item' on input line 85.
+Package microtype Info: Applying patch `toc' on input line 85.
+Package microtype Info: Applying patch `eqnum' on input line 85.
+Package microtype Info: Applying patch `footnote' on input line 85.
+Package microtype Info: Applying patch `verbatim' on input line 85.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 87.
+LaTeX Info: Redefining \showhyphens on input line 85.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -635,41 +631,41 @@ Package microtype Info: Character `029' is missing
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 89.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 87.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 89.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 87.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 89.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 87.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 89.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 87.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 89.
+(Font)              <10> on input line 87.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 89.
+(Font)              <7> on input line 87.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 89.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 89.
+(Font)              <5> on input line 87.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 87.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 89.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 89.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 87.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -679,9 +675,9 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 91.
+(Font)              using `T1/lmr/bx/n' instead on input line 89.
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 129.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 134.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [1
@@ -692,63 +688,87 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \vbox (badness 2393) has occurred while \output is active []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[2{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-Underfull \hbox (badness 5077) in paragraph at lines 295--310
+
+Underfull \hbox (badness 5077) in paragraph at lines 303--318
 \T1/lmr/m/n/10 (+20) The lo-ca-tion of phar-ma-cies was ob-tained from of-fi-cial pub-lic health records. The data
  []
 
 
-Underfull \hbox (badness 2443) in paragraph at lines 295--310
+Underfull \hbox (badness 2443) in paragraph at lines 303--318
 \T1/lmr/m/n/10 (+20) for Eng-land comes from the `Con-sol-i-dated Phar-ma-ceu-ti-cal List' cor-re-spond-ing to the 2023-24
  []
 
 
-Underfull \hbox (badness 3058) in paragraph at lines 295--310
+Underfull \hbox (badness 3058) in paragraph at lines 303--318
 \T1/lmr/m/n/10 (+20) quar-ter 1. This was man-u-ally down-loaded from the NHS Data por-tal ([]$\T1/lmtt/m/n/10 https : / / opendata .
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 295--310
+Underfull \hbox (badness 1436) in paragraph at lines 303--318
 \T1/lmtt/m/n/10 nhsbsa . net / dataset / consolidated-[]pharmaceutical-[]list$[]\T1/lmr/m/n/10 (+20) ). The lo-ca-tion of phar-ma-cies in Scot-
  []
 
 
-Underfull \hbox (badness 2799) in paragraph at lines 295--310
+Underfull \hbox (badness 2799) in paragraph at lines 303--318
 \T1/lmr/m/n/10 (+20) land was ac-cessed from the Pub-lic Health Scot-land plat-form. The `Dis-penser De-tails Jan-
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 295--310
+Underfull \hbox (badness 2903) in paragraph at lines 303--318
 \T1/lmr/m/n/10 (+20) uary 2023' dataset was down-loaded from the URL: []$\T1/lmtt/m/n/10 https : / / www . opendata . nhs . scot / dataset /
  []
 
-[3
+[2{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [3
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.310 
+l.346 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.310 
+l.346 
       ] [4]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[5]
-Underfull \vbox (badness 7221) has occurred while \output is active []
+<../plots/line_plot_comaprison.jpg, id=119, 4015.0pt x 2810.5pt>
+File: ../plots/line_plot_comaprison.jpg Graphic file (type jpg)
+<use ../plots/line_plot_comaprison.jpg>
+Package pdftex.def Info: ../plots/line_plot_comaprison.jpg  used on input line 467.
+(pdftex.def)             Requested size: 469.75499pt x 328.79716pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.484 
+       <../plots/line_plot_comaprison.jpg>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [6
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.495 \leavevmode
-                 \vadjust pre{\hypertarget{ref-R-r5r}{}}%]
+l.494 
+      ]
+<../plots/pt_vs_bike_map.jpg, id=135, 3613.5pt x 2007.5pt>
+File: ../plots/pt_vs_bike_map.jpg Graphic file (type jpg)
+<use ../plots/pt_vs_bike_map.jpg>
+Package pdftex.def Info: ../plots/pt_vs_bike_map.jpg  used on input line 522.
+(pdftex.def)             Requested size: 422.77661pt x 234.85512pt.
+[7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.694 \end{longtable}
+                      <../plots/pt_vs_bike_map.jpg>] [8] [9]
 No file descriptor.bbl.
-[7] (./descriptor.aux)
+[10] (./descriptor.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
@@ -757,21 +777,21 @@ L3 programming layer <2023-10-23>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `descriptor.out' has not changed.
-(rerunfilecheck)             Checksum: 82B6FFD9FD95C783B368600BAF289C14;1880.
+(rerunfilecheck)             Checksum: DA3DF98D0350BF7F7EF1DD4A5C7B1FF1;1756.
  ) 
 Here is how much of TeX's memory you used:
- 14593 strings out of 476357
- 233829 string characters out of 5797817
- 1945036 words of memory out of 5000000
- 35987 multiletter control sequences out of 15000+600000
- 612554 words of font info for 119 fonts, out of 8000000 for 9000
+ 14614 strings out of 476357
+ 234130 string characters out of 5797817
+ 1972036 words of memory out of 5000000
+ 35980 multiletter control sequences out of 15000+600000
+ 628270 words of font info for 135 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,16n,79p,1007b,668s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on descriptor.pdf (7 pages, 238359 bytes).
+ 75i,16n,79p,1007b,712s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on descriptor.pdf (10 pages, 4113750 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 203 compressed objects within 3 object streams
- 50 named destinations out of 1000 (max. 500000)
- 31353 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 271 PDF objects out of 1000 (max. 8388607)
+ 220 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 39547 words of extra memory for PDF output out of 42996 (max. 10000000)
 

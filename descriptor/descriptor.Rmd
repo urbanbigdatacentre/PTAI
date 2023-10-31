@@ -12,7 +12,7 @@ authors:
     location: Glasgow, G12 8RZ 
     email: David.Mcarthur@glasgow.ac.uk
 abstract: |
-  This document describes accessibility indicators for Great Britain 2023 dataset.
+  The dataset described in this paper introduces a suite of updated accessibility indicators to key services for Great Britain (Great Britain Accessibility Indicators 2023, AI23), expanding on the previous Public Transport Accessibility Indicators (PTAI22). AI23 enhances previous versions by incorporating walking and cycling modes, disaggregating employment accessibility by industry, adding pharmacies, and extending public transport assessments to evening off-peak times. AI23 facilitates seamless integration into varied analyses given the use of small-area official geographies.
 keywords:
   - Accessibility
   - Transport
@@ -24,8 +24,6 @@ biblio-style: unsrt
 output: rticles::arxiv_article
 header-includes:
   - \usepackage{amsmath}
-  - \usepackage{setspace}
-  - \onehalfspacing
 ---
 
 ```{r setup, include=FALSE}
@@ -43,24 +41,25 @@ format2 <- function(x, digits = 0)  formatC(x, format="f", big.mark=" ", digits=
 
 # Background & Summary
 
-Accessibility indicators measure the ease of reaching valuable destinations [@Levinson2020]. The Great Britain Accessibility Indicators 2023 (AI23) dataset offers small area indicators to key services, such as: health, education, employment, and urban centres. This is an updated and extended version of the Public Transport Accessibility Indicators for Great Britain 2022 (PTAI22) dataset described here: <https://zenodo.org/records/6759240> [@VerduzcoTorres2022].
+Accessibility indicators measure the ease of reaching valuable destinations [@Levinson2020]. The current dataset, Great Britain Accessibility Indicators 2023 (AI23), provides small-area indicators to key services such as health, education, employment, and urban centres. This dataset is an updated and expanded version of the the Public Transport Accessibility Indicators for Great Britain 2022 (PTAI22) dataset described here: <https://zenodo.org/records/6759240> [@VerduzcoTorres2022].
 
-The products described here represent a snapshot of the first quarter of 2023, while the PTAI22 is an earlier version corresponding to the last quarter of 2021. The indicators of the AI23, where applicable, are directly comparable to the previous version. The AI23 is extended in the following ways compared to the PTAI22:
+The data described here represent a snapshot from the first quarter of 2023, whereas the PTAI22 corresponds to the last quarter of 2021. Where applicable, the AI23 indicators are directly comparable with the previous version. The AI23 has been expanded from the PTAI22 in the following ways:
 
-* In addition to public transport, this version considers active modes namely, walk and bicycle.
-* Also, accessibility to employment is disaggregated according to the UK Standard Industrial Classification of Economic Activities (UK SIC).
-* Furthermore, the AI23 dataset includes pharmacies as an additional health destination.
-* The public transport indicators are not only offered for the morning peak, but also at the evening off-peak.
+* It includes active modes, specifically walking and cycling, in addition to public transport.
+* Accessibility to employment is now disaggregated by the UK Standard Industrial Classification of Economic Activities (UK SIC).
+* Pharmacies have been added as an additional health destination in the AI23 dataset.
+* The public transport indicators now cover not only the morning peak but also the evening off-peak period.
 
-In sum, the present dataset encompasses a set of ready-to-use accessibility indicators to employment, general practices (GPs), hospitals, pharmacies, primary schools, secondary schools, supermarkets, main urban centres, and urban sub-centres. These are offered for 42,000 small area units in GB, namely at the lower super output area (LSOA) in England and Wales, and the data zone (DZ) in Scotland.
+In particular, the current dataset provides a suite of ready-to-use accessibility indicators to key services such as employment, general practices (GPs), hospitals, pharmacies, primary and secondary schools, supermarkets, main urban centres, and urban sub-centres. These indicators are available for 42,000 small area units across Great Britain, specifically at the Lower Super Output Area (LSOA) level in England and Wales, and the Data Zone (DZ) level in Scotland.
 
-Research has used accessibility indicators to study a wide variety of regional and urban outcomes, such as unemployment rates in the labour market [@Bastiaanssen2022], vaccination uptake in public health [@Chen2023], and residential prices in the property market [@VerduzcoTorres2023]. Similarly, these are gaining relevance in planning and policy making as input for developing comprehensive project appraisal [@Cavallaro2023], 20-minute analyses, and as performance benchmark.
+Accessibility indicators have been used in research to examine a broad array of regional and urban issues, including unemployment rates in the labour market [@Bastiaanssen2022], vaccination uptake in public health [@Chen2023], and residential property prices [@VerduzcoTorres2023]. Similarly, their relevance in planning and policymaking is increasing, serving as input for developing comprehensive project appraisals [@Cavallaro2023], conducting 20-minute neighbourhood analyses, and as a performance benchmark.
+
 
 # Methods
 
-The methods and sources employed for the present dataset largely follow those described in the earlier version (<https://zenodo.org/records/6759240> [@VerduzcoTorres2022]). The reminding of the paper focuses on the key aspects or extensions of the present version.
+The methods and sources used for the current dataset largely follow those outlined in the previous version (<https://zenodo.org/records/6759240>) [@VerduzcoTorres2022]. The remainder of the paper focuses on the key aspects and extensions unique to this version.
 
-The accessibility indicators, $A$, are constructured using location-based measures. These include cumulative, relative cumulative, and dual or nearest opportunity  measures. Location-based measures are estimated from an origin $i$ and consider opportunities of type $W_k$ at potential destinations $j$. The cumulative measures are estimated according to the following equation.
+The accessibility indicators, denoted as $A$, are constructed using location-based measures, which encompass cumulative, relative cumulative, and dual or nearest opportunity measures. These location-based measures are calculated from an origin point $i$ and take into account the type of opportunity $W_k$ at potential destinations $j$. The cumulative measures are estimated according to the equation below.
 
 $$
 \begin{aligned}
@@ -88,7 +87,8 @@ The population weighted centroid of each of the 41,729 LSOA/DZ are considered as
 
 ## Key services at destinations
 
-Although the indicators consider the same sources of information to account for the location of services, the closest version available to the first quarter of 2023 is used unless specified otherwise. Table 1 shows a summary of the total number of services for the different versions of the accessibility indicators. These display small negative or positive variations. The urban centre data employs the same input data. Thus, the figures remain unchanged.
+While the indicators use the same information sources to determine the locations of services, the most recent version available for the first quarter of 2023 has been used, unless stated otherwise. Table 1 presents a summary of the total number of services across the different versions of the accessibility indicators, showing minor negative or positive fluctuations. The data for urban centres uses the same input data. Therefore, those figures remain unchanged.
+
 
 ```{r}
 # Read summary
@@ -142,17 +142,18 @@ Travel costs in the accessibility indicators $t_{ij}$ are represented by the mod
 
 # Data records
 
-The accessibility indicators are offered in a series of `CSV` files. These are organised by the type of opportunity or service at the folder level, and by mode at the file level, as shown in the directory tree diagram below. The structure of the directories is as following: `root/[NAME OF SERVICE]/access_[NAME OF SERVICE]_[MODE].csv`, where 'pt' stands for public transport in the 'MODE' element. To increase visibility, the diagram omits the dissaggregated employment measures. However, [Appendix 1](#inventory) includes a detailed inventory of all the files in the dataset.
+The accessibility indicators can be accessed in a series of `.csv` files from the following open-access repository: [PENDING]. These files are organised by the type of opportunity or service within the folder structure, and by mode within the file nomenclature, as illustrated in the directory tree diagram provided. The directory structure is as follows: `root/[NAME OF SERVICE]/access_[NAME OF SERVICE]_[MODE].csv`, with 'pt' denoting public transport in the 'MODE' segment. For clarity, the diagram does not include the disaggregated employment measures, but [Appendix 1](#inventory) contains a comprehensive inventory of all files within the dataset.
 
 ```{r}
 fs::dir_tree('../output/', recurse = TRUE, regexp = '[0-9]', invert = TRUE)
 ```
 
-The `root/variable_descriptor.csv` file details the structure and contents within each of the files outlined in the diagram. This is shown in Table 3. These contain the corresponding 2011 Census LSOA/DZ code in the first column. The 'mode' column refers to the form of transport considered for the indicators. Only for public transport measures contain the column 'time_of_day', which refers to one of the two time of departures estimated, namely 'am' or 'pm'. The 'accessibility' prefix of the columns refers to cumulative measures. This is given for eight 15-minute time cuts between 15 and 120 minutes. The relative measures are identified with the 'pct' suffix. The 'nearest_[NAME OF SERVICE]' column is the travel time in minutes to the nearest service of type $k$. This is not available for employment, as this is treated as aggregated at destinations from source.
+
+Table 3 presents the structure and contents of each file as otulined in the diagram. The first column contains the 2011 Census LSOA/DZ code. The 'mode' column specifies the form of transport used to calculate the indicators. The 'time_of_day' column, exclusive to public transport measures, indicates the departure time – either 'am' or 'pm' – for which the estimates are made. The prefix 'accessibility' in the column headers denotes cumulative measures, provided across eight 15-minute intervals ranging from 15 to 120 minutes. Relative measures are denoted by a 'pct' suffix. The column 'nearest_[NAME OF SERVICE]' shows the travel time in minutes to the closest service of type $k$. This column is not applicable for employment, as these figures are aggregated from the source.
 
 ```{r}
 # Read descriptor
-variable_descriptor <- read_csv('../output/variable_descriptor.csv')
+variable_descriptor <- read_csv('./tables//variable_descriptor.csv')
 
 # Print table
 variable_descriptor %>%
@@ -164,24 +165,62 @@ variable_descriptor %>%
 ```
 
 
+Figure \ref{fig:access-overview} provides a visual summary of the relative accessibility indicators to key services by mode. The horizontal axis represents the time cut, capped at 60 minutes, while the vertical axis displays the average relative accessibility across Great Britain. The figure shows that public transport allows access to a greater number of services at longer travel times (over 45 minutes). However, for travel times less than 45 minutes, accessibility levels are similar between bicycle and public transport, and for some services within 30 minutes or less—such as Manufacturing (C) and Motor trades (Part G) employment, secondary schools, and supermarkets—accessibility is even higher for bicycle. As expected, walking is a competitive mode only at shorter distances.
 
 
-# Technical validation
-
+\begin{figure}
+  \centering
+  \includegraphics[width=1.0\textwidth]{../plots/line_plot_comaprison.jpg}
+  \caption{Relative accessibility overview to key services for various modes.}
+  \footnotesize{\textit{Source:} the author based on AI23 dataset.}
+  \label{fig:access-overview}
+\end{figure}
 
 # Usage notes
 
+The accessibility indicators contained in this dataset are devised for seamless integration into diverse analyses, facilitated by their alignment with an official small-area definition. They can be directly merged with other datasets at the same granularity using the 'geo_code' identifier in standard software such as Microsoft Excel or comparable spreadsheet programs. This feature is particularly useful for assessing the actual reach of essential public services, like health and education, of distinct population segments, including vulnerable groups.
+
+Additionally, the AI23 can be directly compared with the PTAI22 for public transport, opening up a range of possibilities for planning authorities and transport agencies to assess performance. For example, this can be useful for examining a variety of modifications ranging from simple operational adjustments such as frequencies to the introduction/discontinuation of services or physical modifications of the infrastructure. This is relevant for addressing questions such as the number of population benefited or affected, or the additional number of public services covered by public transport.
+
+In addition to LSOA/DZ level analyses, the indicators can be aggregated at larger geographical units using the `lookup` file offered by the InFuse service (<https://infuse.ukdataservice.ac.uk/help/definitions/2011geographies/index.html>). This includes a hierarchical correspondence to mid areal unit boundaries, local authority, or region, for example.  
+
+The AI23 dataset is also valuable for conducting comparisons between sustainable transport modes. For instance, the indicators included can be used to identify communities that have the potential to increase bicycle usage by demonstrating the mode's effectiveness relative to more conventional forms, such as public transport. Figure \ref{fig:bike-comparison} exemplifies this for London for two time cuts, namely 30 and 45 minutes. The comparison reveals a considerable number of zones where accessibility to employment by bicycle within 30 minutes is competitive with that of public transport. The right-hand side panel shows that there are noticeably more locations with higher accessibility levels by public transport. Such inputs can be instrumental for informing demand management strategies by identifying target populations that could shift to or increase their bicycle usage, especially in areas where the public transport network experiences peak period congestion. Additionally, these insights can guide modal integration policies, favoring the development of bicycle infrastructure when it presents as a more cost-effective option than expanding public transport.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\textwidth]{../plots/pt_vs_bike_map}
+  \caption{Accessibiility to employment comparison between bicycle and public transport in London.}
+  \footnotesize{\textit{Source:} the author based on AI23 dataset.}
+  \label{fig:bike-comparison}
+\end{figure}
 
 # Code availability{-}
 
-All the code used to generate this data set is openly avaiable in the following GitHub repository: <https://github.com/urbanbigdatacentre/accessibility_indices23>.
+All the code used to generate this data set is openly available in the following GitHub repository: <https://github.com/urbanbigdatacentre/accessibility_indices23>.
 
 # Acknowledgement{-}
 
 This work was made possible by ESRC’s on-going support for the Urban Big Data Centre [ES/L011921/1 and ES/S007105/1].
 
-# Appendix 1. Inventory file{#inventory}
+# Appendix 1. Inventory of files{#inventory}
 
+```{r}
+# Read descriptor
+inventory <- read_csv('../output/inventory.csv')
+# Column names
+col_names <- c('Path', 'Type', 'Size')
+
+# Print table
+inventory %>%
+  kbl(
+    caption = 'Inventory of files',
+    booktabs = T, 
+    col.names = col_names, 
+    longtable = TRUE,
+    ) %>%
+  kable_styling(font_size = 8, latex_options = c("hold_position", "repeat_header")) %>% 
+  column_spec(1, width = "13cm")
+```
 
 
 # References{-}
