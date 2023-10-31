@@ -149,7 +149,7 @@ fs::dir_tree('../output/', recurse = TRUE, regexp = '[0-9]', invert = TRUE)
 ```
 
 
-Table 3 presents the structure and contents of each file as otulined in the diagram. The first column contains the 2011 Census LSOA/DZ code. The 'mode' column specifies the form of transport used to calculate the indicators. The 'time_of_day' column, exclusive to public transport measures, indicates the departure time – either 'am' or 'pm' – for which the estimates are made. The prefix 'accessibility' in the column headers denotes cumulative measures, provided across eight 15-minute intervals ranging from 15 to 120 minutes. Relative measures are denoted by a 'pct' suffix. The column 'nearest_[NAME OF SERVICE]' shows the travel time in minutes to the closest service of type $k$. This column is not applicable for employment, as these figures are aggregated from the source.
+Table 3 presents the structure and contents of each file as outlined in the diagram. The first column contains the 2011 Census LSOA/DZ code. The 'mode' column specifies the form of transport used to calculate the indicators. The 'time_of_day' column, exclusive to public transport measures, indicates the departure time – either 'am' or 'pm' – for which the estimates are made. The prefix 'accessibility' in the column headers denotes cumulative measures, provided across eight 15-minute intervals ranging from 15 to 120 minutes. Relative measures are denoted by a 'pct' suffix. The column 'nearest_[NAME OF SERVICE]' shows the travel time in minutes to the closest service of type $k$. This column is not applicable for employment, as these figures are aggregated from the source.
 
 ```{r}
 # Read descriptor
