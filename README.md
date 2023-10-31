@@ -1,8 +1,8 @@
-# Accessibility indices in Great Britain 2023
+# Great Britain Accessibility Indicators 2023
 
 This repository contains the code used to estimate the Great Britain Accessibility Indicators 2023 (AI23). 
 
-The indices correspond to the first quarter of 2023. The geographic coverage  includes England, Scotland, and Wales. The geographic unit used is the 2011 LSOA/DZ version.
+The indicators correspond to the first quarter of 2023. The geographic coverage  includes England, Scotland, and Wales. The geographic unit used is the 2011 LSOA/DZ version.
 
 ## Dataset
 
