@@ -92,12 +92,24 @@ summary1 <- access_relative %>%
     access_median = median(accessibility),
     access_q1 = quantile(accessibility, 0.25),
     access_q3 = quantile(accessibility, 0.75)
-  )
+  ) %>% 
+  ungroup()
+
+
+summary1 %>% 
+  filter(time_cut <= 60) %>% 
+  mutate(
+    mode = factor(factor, labels = mode_labs),
+    service = gsub('_(?=[a-z])', '\n', service, perl = TRUE),
+    service = gsub('_', ' ', service, perl = TRUE),
+    service = str_to_sentence(service)
+  ) 
 
 # LinePlot: accessibility by time cut
 line_plot_comaprison <- summary1 %>% 
   filter(time_cut <= 60) %>% 
   mutate(
+    mode = factor(mode, labels = mode_labs),
     service = gsub('_(?=[a-z])', '\n', service, perl = TRUE),
     service = gsub('_', ' ', service, perl = TRUE),
     service = str_to_sentence(service)
@@ -116,7 +128,13 @@ line_plot_comaprison <- summary1 %>%
   theme(legend.position = 'bottom')
 
 # Save map
-ggsave('plots/line_plot_comaprison.jpg',plot = line_plot_comaprison, dpi = 400, height = 7, width = 10)
+ggsave(
+  'plots/line_plot_comaprison.jpg',
+  plot = line_plot_comaprison, 
+  dpi = 400, 
+  height = 7, 
+  width = 10
+)
 
 
 # Places where access by bicycle is higher than PT ------------------------
@@ -135,7 +153,7 @@ lookup <- lookup %>%
   distinct()
 
 # Compute difference
-access_comparison <- access_absolute %>% 
+access_comparison <- access_relative %>% 
   pivot_wider(names_from = 'mode', values_from = 'accessibility') %>% 
   rowwise() %>% 
   mutate(pt_bike_diff = bicycle / pt) %>% 
@@ -157,14 +175,18 @@ access_comparison_sf <- access_comparison %>%
   left_join(lsoa_geoms, by = 'geo_code') %>%
   st_as_sf()
 
+
 # Map comparison
 pt_bike_map <- access_comparison_sf %>%
-  mutate(time_cut = factor(time_cut, labels = c('In 30 min', 'In 45 min'))) %>%
+  mutate(
+    bike = factor(bike, labels = c('Bicycle', 'Public transport')),
+    time_cut = factor(time_cut, labels = c('In 30 min', 'In 45 min'))
+  ) %>%
   ggplot() +
   geom_sf(aes(fill = bike), col = NA) +
   facet_wrap(~time_cut) +
   labs(
-    title = 'Where can you reach more jobs by bicycle than by public transport?',
+    title = 'Where can more jobs be reached by bicycle than by public transport?',
     subtitle = 'Map showing London at the morning peak.',
     fill = 'More jobs by:'
   ) +
@@ -173,7 +195,13 @@ pt_bike_map <- access_comparison_sf %>%
   theme(legend.position = 'bottom')
 
 # Save map
-ggsave('plots/pt_vs_bike_map.jpg', pt_bike_map, dpi = 400, height = 5, width = 9)
+ggsave(
+  filename = 'plots/pt_vs_bike_map.jpg', 
+  plot = pt_bike_map, 
+  dpi = 400, 
+  height = 5, 
+  width = 9
+)
 
 
 # Nearest facility  -------------------------------------------------------
