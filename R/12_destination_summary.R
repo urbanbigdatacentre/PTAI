@@ -6,9 +6,12 @@ library(tidyverse)
 summary22 <- read_csv('data/pt_accessibility_22/destinations_summary.csv')
 # Read land destinations 23
 land_use <- read_csv('data/land_use_lsoa.csv')
+# Disregard park access points
+land_use <- land_use %>% 
+  select(-contains('accesspoint'))
 
 
-# Fromat data -------------------------------------------------------------
+# Format data -------------------------------------------------------------
 
 # Summarise data 2023
 summary_23 <- land_use %>% 
@@ -31,17 +34,21 @@ summary22$destination_cd <- destination_cd
 summary_all <- summary22 %>% 
   # select(-England, -Scotland, -Wales) %>% 
   full_join(summary_23, by = c('destination_cd' = 'destination')) %>% 
-  rename(total_22 = `Great Britain`) %>% 
-  select(destination, starts_with('total'))
-
+  rename(total_22 = `Great Britain`)
+  
 # Format summary
 summary_all <- summary_all %>% 
   mutate(
-    destination = replace_na(destination, 'Pharmacies'),
+    destination = 
+      case_when(
+        destination_cd == 'pharmacies' ~  'Pharmacies',
+        destination_cd == 'park_ha' ~ 'Parks (ha)',
+        TRUE ~ destination
+      ),
     destination = gsub('Education: ', '', destination)
   ) %>% 
+  select(destination, starts_with('total')) %>% 
   arrange(destination)
-
 
 # Write summary -----------------------------------------------------------
 

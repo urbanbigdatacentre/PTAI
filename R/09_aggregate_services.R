@@ -70,6 +70,9 @@ land_use <- employment %>%
 land_use <- land_use %>% 
   mutate(across(-id, \(x) replace_na(x, 0)))
 
+# Summary
+summary(land_use)
+
 
 # Write output ------------------------------------------------------------
 

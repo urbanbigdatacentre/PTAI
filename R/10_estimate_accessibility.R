@@ -9,8 +9,13 @@ library(AccessUK)
 
 # Read files --------------------------------------------------------------
 
-# Read services aggreated at LSOA/DZ
-land_use <- read_csv('data/land_use_lsoa.csv')
+# Read services aggregated at LSOA/DZ
+land_use_all <- read_csv('data/land_use_lsoa.csv')
+
+# Select variables for cumulative measures
+land_use <- land_use_all %>% 
+  select(-contains('accesspoints')) %>% 
+  rename(parks = park_ha)
 
 # Estimate accessibility  -------------------------------------------------
 
@@ -48,6 +53,7 @@ accessibility$bicycle <- AccessUK::estimate_accessibility(
 # Bind rows
 accessibility <- bind_rows(accessibility, .id = 'mode')
 
+
 # Relative accessibility --------------------------------------------------
 
 
@@ -78,8 +84,11 @@ access_all <- bind_cols(accessibility, access_rel)
 # Nearest opportunity -----------------------------------------------------
 
 # Type of services to estimate nearest facility
-land_use_nearest <- land_use %>% 
-  select(!starts_with('employment'))
+# Disregard employment
+# Consider park access points
+land_use_nearest <- land_use_all %>% 
+  select(!starts_with('employment'), -park_ha, -park_accesspoints_original) %>% 
+  rename(parks = park_accesspoints)
 
 # List to store results
 nearest_opp <- list()
