@@ -40,7 +40,7 @@ summary(greenspace_site_intersection$area_ha)
 greenspace_surface <- greenspace_site_intersection %>% 
   st_drop_geometry() %>% 
   group_by(geo_code) %>% 
-  summarise(area_ha = sum(area_ha))
+  summarise(park_ha = sum(area_ha))
 
 
 # Process points of access ------------------------------------------------
@@ -49,12 +49,11 @@ greenspace_surface <- greenspace_site_intersection %>%
 access_point_parks <- access_point %>% 
   filter(ref_to_greenspace_site %in% greenspace_site$id)
 
-
 # Check polygons without access points
 greenspace_site_inter <- st_join(greenspace_site, access_point)
 
 # Get vertex points for polygons without access points
-# This assumes that access is possible through anywhere in the perimeter
+# This assumes that access is possible anywhere through the perimeter
 
 # Compute the boundary for polygons without access points
 boundaries <- greenspace_site_inter %>% 
@@ -86,14 +85,14 @@ accesspoints_count <- all_access_points %>%
 access_count_original <- access_point_parks %>% 
   st_join(lsoa_geoms) %>%
   st_drop_geometry() %>% 
-  count(geo_code, name = 'original_accesspoints')
+  count(geo_code, name = 'park_accesspoints_original')
 
 # Join access points and polygon area summary -----------------------------
 
 # Join points and polygon summaries
 greenspace_aggregated <- greenspace_surface %>% 
   full_join(accesspoints_count, by = 'geo_code') %>% 
-  full_join(access_aggregated_oringal, by = 'geo_code')
+  full_join(access_count_original, by = 'geo_code')
 
 
 # Inspect results ---------------------------------------------------------
