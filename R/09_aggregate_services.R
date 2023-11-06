@@ -23,7 +23,8 @@ pharmacies <- read_csv('data/pharmacy/pharmacies_gb.csv')
 # Urban centers
 sub_bua <-  st_read('data/urban_centres/sub_bua.gpkg') %>% st_drop_geometry()
 main_bua <-  st_read('data/urban_centres/main_bua.gpkg') %>% st_drop_geometry()
-
+# Green spaces
+green_space <- read_csv('data/greenspace/greenspace_summary.csv')
 
 
 # Aggregate data ----------------------------------------------------------
@@ -62,6 +63,7 @@ land_use <- employment %>%
   left_join(pharmacies_count, by = c('lsoa11cd' = 'lsoa11')) %>% 
   left_join(main_bua_count, by = c('lsoa11cd' = 'geo_code')) %>% 
   left_join(sub_bua_count, by = c('lsoa11cd' = 'geo_code')) %>% 
+  left_join(green_space, by = c('lsoa11cd' = 'geo_code')) %>% 
   rename(id = lsoa11cd)
 
 # NAs as 0, assuming there is none of these services
