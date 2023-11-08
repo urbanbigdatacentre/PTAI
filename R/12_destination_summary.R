@@ -42,7 +42,7 @@ summary_all <- summary_all %>%
     destination = 
       case_when(
         destination_cd == 'pharmacies' ~  'Pharmacies',
-        destination_cd == 'park_ha' ~ 'Parks (ha)',
+        destination_cd == 'park_ha' ~ 'Parks and gardens (ha)',
         TRUE ~ destination
       ),
     destination = gsub('Education: ', '', destination)
