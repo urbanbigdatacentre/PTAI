@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  31 OCT 2023 14:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  8 NOV 2023 11:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -102,7 +102,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2023-10-21 v7.01c Hypertext links for LaTeX
+Package: hyperref 2023-10-27 v7.01d Hypertext links for LaTeX
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -143,7 +143,7 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \Hy@linkcounter=\count199
 \Hy@pagecounter=\count266
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2023-10-21 v7.01c Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2023-10-27 v7.01d Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -151,7 +151,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count267
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2023-10-21 v7.01c Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2023-10-27 v7.01d Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -194,7 +194,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2023-10-21 v7.01c Hyperref driver for pdfTeX
+File: hpdftex.def 2023-10-27 v7.01d Hyperref driver for pdfTeX
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
@@ -285,7 +285,7 @@ File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 \csllabelwidth=\skip67
 \cslentryspacingunit=\skip68
 (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count281
 \calc@Bcount=\count282
 \calc@Adimen=\dimen169
@@ -360,7 +360,7 @@ LaTeX Info: Redefining \Relbar on input line 971.
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
+Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
 \LTleft=\skip75
 \LTright=\skip76
 \LTpre=\skip77
@@ -378,7 +378,7 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \c@LT@chunks=\count300
 \LT@p@ftn=\toks29
 ) (c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen181
 \ar@mcellbox=\box59
 \extrarowheight=\dimen182
@@ -690,85 +690,95 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \hbox (badness 5077) in paragraph at lines 303--318
-\T1/lmr/m/n/10 (+20) The lo-ca-tion of phar-ma-cies was ob-tained from of-fi-cial pub-lic health records. The data
- []
-
-
-Underfull \hbox (badness 2443) in paragraph at lines 303--318
-\T1/lmr/m/n/10 (+20) for Eng-land comes from the `Con-sol-i-dated Phar-ma-ceu-ti-cal List' cor-re-spond-ing to the 2023-24
- []
-
-
-Underfull \hbox (badness 3058) in paragraph at lines 303--318
-\T1/lmr/m/n/10 (+20) quar-ter 1. This was man-u-ally down-loaded from the NHS Data por-tal ([]$\T1/lmtt/m/n/10 https : / / opendata .
- []
-
-
-Underfull \hbox (badness 1436) in paragraph at lines 303--318
-\T1/lmtt/m/n/10 nhsbsa . net / dataset / consolidated-[]pharmaceutical-[]list$[]\T1/lmr/m/n/10 (+20) ). The lo-ca-tion of phar-ma-cies in Scot-
- []
-
-
-Underfull \hbox (badness 2799) in paragraph at lines 303--318
-\T1/lmr/m/n/10 (+20) land was ac-cessed from the Pub-lic Health Scot-land plat-form. The `Dis-penser De-tails Jan-
- []
-
-
-Underfull \hbox (badness 2903) in paragraph at lines 303--318
-\T1/lmr/m/n/10 (+20) uary 2023' dataset was down-loaded from the URL: []$\T1/lmtt/m/n/10 https : / / www . opendata . nhs . scot / dataset /
- []
-
 [2{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [3
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.346 
+l.340 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.346 
-      ] [4]
+l.340 
+      ]
+Underfull \hbox (badness 5077) in paragraph at lines 344--359
+\T1/lmr/m/n/10 (+20) The lo-ca-tion of phar-ma-cies was ob-tained from of-fi-cial pub-lic health records. The data
+ []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/line_plot_comaprison.jpg, id=119, 4015.0pt x 2810.5pt>
+Underfull \hbox (badness 2443) in paragraph at lines 344--359
+\T1/lmr/m/n/10 (+20) for Eng-land comes from the `Con-sol-i-dated Phar-ma-ceu-ti-cal List' cor-re-spond-ing to the 2023-24
+ []
+
+
+Underfull \hbox (badness 3058) in paragraph at lines 344--359
+\T1/lmr/m/n/10 (+20) quar-ter 1. This was man-u-ally down-loaded from the NHS Data por-tal ([]$\T1/lmtt/m/n/10 https : / / opendata .
+ []
+
+
+Underfull \hbox (badness 1436) in paragraph at lines 344--359
+\T1/lmtt/m/n/10 nhsbsa . net / dataset / consolidated-[]pharmaceutical-[]list$[]\T1/lmr/m/n/10 (+20) ). The lo-ca-tion of phar-ma-cies in Scot-
+ []
+
+
+Underfull \hbox (badness 2799) in paragraph at lines 344--359
+\T1/lmr/m/n/10 (+20) land was ac-cessed from the Pub-lic Health Scot-land plat-form. The `Dis-penser De-tails Jan-
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 344--359
+\T1/lmr/m/n/10 (+20) uary 2023' dataset was down-loaded from the URL: []$\T1/lmtt/m/n/10 https : / / www . opendata . nhs . scot / dataset /
+ []
+
+[4]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[5]
+<../plots/line_plot_comaprison.jpg, id=129, 4015.0pt x 2810.5pt>
 File: ../plots/line_plot_comaprison.jpg Graphic file (type jpg)
 <use ../plots/line_plot_comaprison.jpg>
-Package pdftex.def Info: ../plots/line_plot_comaprison.jpg  used on input line 467.
+Package pdftex.def Info: ../plots/line_plot_comaprison.jpg  used on input line 503.
 (pdftex.def)             Requested size: 469.75499pt x 328.79716pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[5
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.484 
-       <../plots/line_plot_comaprison.jpg>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+<../plots/parks_map.jpg, id=131, 3613.5pt x 2007.5pt>
+File: ../plots/parks_map.jpg Graphic file (type jpg)
+<use ../plots/parks_map.jpg>
+Package pdftex.def Info: ../plots/parks_map.jpg  used on input line 519.
+(pdftex.def)             Requested size: 422.77661pt x 234.85512pt.
 [6
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.494 
-      ]
-<../plots/pt_vs_bike_map.jpg, id=135, 3613.5pt x 2007.5pt>
+l.523 \end{figure}
+                  ]
+Underfull \vbox (badness 2310) has occurred while \output is active []
+
+[7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.571 
+       <../plots/line_plot_comaprison.jpg>]
+<../plots/pt_vs_bike_map.jpg, id=150, 3613.5pt x 2007.5pt>
 File: ../plots/pt_vs_bike_map.jpg Graphic file (type jpg)
 <use ../plots/pt_vs_bike_map.jpg>
-Package pdftex.def Info: ../plots/pt_vs_bike_map.jpg  used on input line 522.
+Package pdftex.def Info: ../plots/pt_vs_bike_map.jpg  used on input line 574.
 (pdftex.def)             Requested size: 422.77661pt x 234.85512pt.
-[7
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[8
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.694 \end{longtable}
-                      <../plots/pt_vs_bike_map.jpg>] [8] [9]
+l.581 
+       <../plots/parks_map.jpg>] [9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.753 \end{longtable}
+                      <../plots/pt_vs_bike_map.jpg>] [10] [11]
 No file descriptor.bbl.
-[10] (./descriptor.aux)
+[12] (./descriptor.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
@@ -777,21 +787,21 @@ L3 programming layer <2023-10-23>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `descriptor.out' has not changed.
-(rerunfilecheck)             Checksum: DA3DF98D0350BF7F7EF1DD4A5C7B1FF1;1756.
+(rerunfilecheck)             Checksum: 96DE559811DFC5F5123C9EAFEDE5027B;1915.
  ) 
 Here is how much of TeX's memory you used:
- 14614 strings out of 476357
- 234130 string characters out of 5797817
- 1972036 words of memory out of 5000000
- 35980 multiletter control sequences out of 15000+600000
- 628270 words of font info for 135 fonts, out of 8000000 for 9000
+ 14647 strings out of 476357
+ 234818 string characters out of 5797817
+ 1974036 words of memory out of 5000000
+ 35998 multiletter control sequences out of 15000+600000
+ 628685 words of font info for 140 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,16n,79p,1007b,712s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,16n,79p,1007b,670s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/jvt3d/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on descriptor.pdf (10 pages, 4113750 bytes).
+Output written on descriptor.pdf (12 pages, 5266695 bytes).
 PDF statistics:
- 271 PDF objects out of 1000 (max. 8388607)
- 220 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
- 39547 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 289 PDF objects out of 1000 (max. 8388607)
+ 235 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 39560 words of extra memory for PDF output out of 42996 (max. 10000000)
 

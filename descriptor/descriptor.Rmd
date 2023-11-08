@@ -12,7 +12,7 @@ authors:
     location: Glasgow, G12 8RZ 
     email: David.Mcarthur@glasgow.ac.uk
 abstract: |
-  The dataset described in this paper introduces a suite of updated accessibility indicators to key services for Great Britain (Great Britain Accessibility Indicators 2023, AI23), expanding on the previous Public Transport Accessibility Indicators (PTAI22). AI23 enhances previous versions by incorporating walking and cycling modes, disaggregating employment accessibility by industry, adding pharmacies, and extending public transport assessments to evening off-peak times. AI23 facilitates seamless integration into varied analyses given the use of small-area official geographies.
+  The dataset described in this paper introduces a suite of updated accessibility indicators to key services for Great Britain (Great Britain Accessibility Indicators 2023, AI23), expanding on the previous Public Transport Accessibility Indicators (PTAI22). AI23 enhances previous versions by incorporating walking and cycling modes, disaggregating employment accessibility by industry, adding pharmacies, parks and gardens, and extending public transport estimates to evening off-peak times. AI23 facilitates seamless integration into varied analyses given the use of small-area official geographies.
 keywords:
   - Accessibility
   - Transport
@@ -48,9 +48,10 @@ The data described here represent a snapshot from the first quarter of 2023, whe
 * It includes active modes, specifically walking and cycling, in addition to public transport.
 * Accessibility to employment is now disaggregated by the UK Standard Industrial Classification of Economic Activities (UK SIC).
 * Pharmacies have been added as an additional health destination in the AI23 dataset.
+* Public parks and gardens are included as a main recreational service.
 * The public transport indicators now cover not only the morning peak but also the evening off-peak period.
 
-In particular, the current dataset provides a suite of ready-to-use accessibility indicators to key services such as employment, general practices (GPs), hospitals, pharmacies, primary and secondary schools, supermarkets, main urban centres, and urban sub-centres. These indicators are available for 42,000 small area units across Great Britain, specifically at the Lower Super Output Area (LSOA) level in England and Wales, and the Data Zone (DZ) level in Scotland.
+In particular, the current dataset provides a suite of ready-to-use accessibility indicators to key services such as employment, general practices (GPs), hospitals, pharmacies, parks and gardens, primary and secondary schools, supermarkets, main urban centres, and urban sub-centres. These indicators are available for 42,000 small area units across Great Britain, specifically at the Lower Super Output Area (LSOA) level in England and Wales, and the Data Zone (DZ) level in Scotland.
 
 Accessibility indicators have been used in research to examine a broad array of regional and urban issues, including unemployment rates in the labour market [@Bastiaanssen2022], vaccination uptake in public health [@Chen2023], and residential property prices [@VerduzcoTorres2023]. Similarly, their relevance in planning and policymaking is increasing, serving as input for developing comprehensive project appraisals [@Cavallaro2023], conducting 20-minute neighbourhood analyses, and as a performance benchmark.
 
@@ -128,13 +129,25 @@ industrial_groups %>%
   kable_styling(full_width = T, latex_options = "hold_position") 
 ```
 
+### Hospitals
+
+The sources and selection criterion to account for the location of hospitals remains unchanged and uses the official updated datasets except for Wales. In the latter case, the PTAI22 used the list of addresses available on the Health in Wales website (<http://www.wales.nhs.uk/>). However, this is no longer active. Thus, we used the locations obtained in January 2022.
+
+### Parks and gardens
+
+Public parks and gardens are included as recreational services. The geolocation information is sourced from the 'OS Open Greenspace' dataset V 1.3, corresponding to April 2023 covering all of GB (available at https://www.ordnancesurvey.co.uk/products/os-open-greenspace). This product is licensed under the Open Government Licence, allowing the distribution of derivative works.
+
+The Open Greenspace dataset comprises two tables: 'Greenspace Site' and 'Access Point'. The former represents the outer boundaries of greenspaces, while the latter indicates specific entry points associated with these boundaries. The 'Greenspace Site' table was filtered to include only geometries classified as 'Public Park or Garden' in the 'function' field. Subsequently, the 'Access Point' table was refined using the linking ID from the 'Greenspace Site' table.
+
+The 'Greenspace Site' polygons were overlapped onto the LSOA/DZ geometries, with the corresponding area size in hectares (ha) being used as the weight ($W_{i}$) for the service in cumulative measures. The nearest park or garden was determined using the 'Access Point' locations. It is important to note that while the boundaries represented in the 'Greenspace Site' can indicate physical delimitations, this is not always the case. For the purposes of this study, it is assumed that if a polygon lacks a designated access point, entry is possible through any point along its boundary.
+
 ### Pharmacies
 
 The location of pharmacies was obtained from official public health records. The data for England comes from the 'Consolidated Pharmaceutical List' corresponding to the 2023-24 quarter 1. This was manually downloaded from the NHS Data portal (<https://opendata.nhsbsa.net/dataset/consolidated-pharmaceutical-list>). The location of pharmacies in Scotland was accessed from the Public Health Scotland platform. The 'Dispenser Details January 2023' dataset was downloaded from the URL: <https://www.opendata.nhs.scot/dataset/dispenser-location-contact-details/resource/f44e6a10-4f1f-4ffd-9205-956944bacf95>. The information for Wales was available from NHS website. The 'Pharmacy Chains' dataset used corresponds to June 2023 (URL: <https://nwssp.nhs.wales/ourservices/primary-care-services/general-information/data-and-publications/pharmacies-in-wales/>). These data contain address references including the postcode, which was matched with the ONS postcode dataset to assign a corresponding LSOA/DZ code.
 
-### Hospitals
 
-The sources and selection criterion to account for the location of hospitals remains unchanged and uses the official updated datasets except for Wales. In the latter case, the PTAI22 used the list of addresses available on the Health in Wales website (<http://www.wales.nhs.uk/>). However, this is no longer active. Thus, we used the locations obtained in January 2022.
+
+
 
 ## Travel costs
 
@@ -142,14 +155,14 @@ Travel costs in the accessibility indicators $t_{ij}$ are represented by the mod
 
 # Data records
 
-The accessibility indicators can be accessed in a series of `.csv` files from the following open-access repository: [PENDING]. These files are organised by the type of opportunity or service within the folder structure, and by mode within the file nomenclature, as illustrated in the directory tree diagram provided. The directory structure is as follows: `root/[NAME OF SERVICE]/access_[NAME OF SERVICE]_[MODE].csv`, with 'pt' denoting public transport in the 'MODE' segment. For clarity, the diagram does not include the disaggregated employment measures, but [Appendix 1](#inventory) contains a comprehensive inventory of all files within the dataset.
+The accessibility indicators can be accessed in a series of `.csv` files from the following open-access repository: [PENDING]. These files are organised by the type of opportunity or service within the folder structure, and by mode within the file nomenclature, as illustrated in the directory tree diagram provided. The directory structure is as follows: `root/<NAME OF SERVICE>/access_<NAME OF SERVICE>_<MODE>.csv`, with 'pt' denoting public transport in the `<MODE>` segment. For clarity, the diagram does not include the disaggregated employment measures, but [Appendix 1](#inventory) contains a comprehensive inventory of all files within the dataset.
 
 ```{r}
 fs::dir_tree('../output/', recurse = TRUE, regexp = '[0-9]', invert = TRUE)
 ```
 
 
-Table 3 presents the structure and contents of each file as outlined in the diagram. The first column contains the 2011 Census LSOA/DZ code. The 'mode' column specifies the form of transport used to calculate the indicators. The 'time_of_day' column, exclusive to public transport measures, indicates the departure time – either 'am' or 'pm' – for which the estimates are made. The prefix 'accessibility' in the column headers denotes cumulative measures, provided across eight 15-minute intervals ranging from 15 to 120 minutes. Relative measures are denoted by a 'pct' suffix. The column 'nearest_[NAME OF SERVICE]' shows the travel time in minutes to the closest service of type $k$. This column is not applicable for employment, as these figures are aggregated from the source.
+Table 3 presents the structure and contents of each file as outlined in the diagram. The first column contains the 2011 Census LSOA/DZ code. The 'mode' column specifies the form of transport used to calculate the indicators. The 'time_of_day' column, exclusive to public transport measures, indicates the departure time – either 'am' or 'pm' – for which the estimates are made. The prefix 'accessibility' in the column headers denotes cumulative measures, provided across eight 15-minute intervals ranging from 15 to 120 minutes. Relative measures are denoted by a 'pct' suffix. The column 'nearest_<NAME OF SERVICE>' shows the travel time in minutes to the closest service of type $k$. This column is not applicable for employment, as these figures are aggregated from the source.
 
 ```{r}
 # Read descriptor
@@ -161,19 +174,29 @@ variable_descriptor %>%
     caption = 'Variable descriptor',
     booktabs = T
     ) %>%
-  kable_styling(full_width = T, latex_options = "hold_position") 
+  kable_styling(full_width = T, latex_options = "HOLD_position") 
 ```
 
 
-Figure \ref{fig:access-overview} provides a visual summary of the relative accessibility indicators to key services by mode. The horizontal axis represents the time cut, capped at 60 minutes, while the vertical axis displays the average relative accessibility across Great Britain. The figure shows that public transport allows access to a greater number of services at longer travel times (over 45 minutes). However, for travel times less than 45 minutes, accessibility levels are similar between bicycle and public transport, and for some services within 30 minutes or less—such as Manufacturing (C) and Motor trades (Part G) employment, secondary schools, and supermarkets—accessibility is even higher for bicycle. As expected, walking is a competitive mode only at shorter distances.
+Figure \ref{fig:access-overview} provides a visual summary of the relative accessibility indicators to key services by mode. The horizontal axis represents the time cut, capped at 60 minutes, while the vertical axis displays the average relative accessibility across Great Britain. The figure shows that public transport allows access to a greater number of services at longer travel times (over 45 minutes). However, for travel times less than 45 minutes, accessibility levels are similar between bicycle and public transport, and for some services within 30 minutes or less—such as Manufacturing (C) and Motor trades (Part G) employment, parks, and supermarkets—accessibility is even higher for bicycle. As expected, walking is a competitive mode only at shorter distances.
 
 
-\begin{figure}
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{../plots/line_plot_comaprison.jpg}
   \caption{Relative accessibility overview to key services for various modes.}
   \footnotesize{\textit{Source:} the author based on AI23 dataset.}
   \label{fig:access-overview}
+\end{figure}
+
+Figure \ref{fig:access-parks} illustrates the accessibility to public parks and gardens in Greater Manchester Area within 30 minutes by bicycle and public transport at the morning peak. The map reveals contrasting differences. The main difference are particularly noticeable in the south of the city. In this area, accessibility is higher by bicycle than by public transport. Conversely, the core area has higher access by public transport.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{../plots/parks_map.jpg}
+  \caption{Accessibility to public parks or gardens in Manchester area within 30 minutes by bicycle and public transport.}
+  \footnotesize{\textit{Source:} the author based on AI23 dataset. Contains OS and OSM data.}
+  \label{fig:access-parks}
 \end{figure}
 
 # Usage notes
@@ -186,13 +209,15 @@ In addition to LSOA/DZ level analyses, the indicators can be aggregated at large
 
 The AI23 dataset is also valuable for conducting comparisons between sustainable transport modes. For instance, the indicators included can be used to identify communities that have the potential to increase bicycle usage by demonstrating the mode's effectiveness relative to more conventional forms, such as public transport. Figure \ref{fig:bike-comparison} exemplifies this for London for two time cuts, namely 30 and 45 minutes. The comparison reveals a considerable number of zones where accessibility to employment by bicycle within 30 minutes is competitive with that of public transport. The right-hand side panel shows that there are noticeably more locations with higher accessibility levels by public transport. Such inputs can be instrumental for informing demand management strategies by identifying target populations that could shift to or increase their bicycle usage, especially in areas where the public transport network experiences peak period congestion. Additionally, these insights can guide modal integration policies, favoring the development of bicycle infrastructure when it presents as a more cost-effective option than expanding public transport.
 
-\begin{figure}
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth]{../plots/pt_vs_bike_map}
   \caption{Accessibiility to employment comparison between bicycle and public transport in London.}
   \footnotesize{\textit{Source:} the author based on AI23 dataset.}
   \label{fig:bike-comparison}
 \end{figure}
+
+\pagebreak
 
 # Code availability{-}
 

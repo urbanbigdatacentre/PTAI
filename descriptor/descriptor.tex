@@ -93,9 +93,9 @@ Britain Accessibility Indicators 2023, AI23), expanding on the previous
 Public Transport Accessibility Indicators (PTAI22). AI23 enhances
 previous versions by incorporating walking and cycling modes,
 disaggregating employment accessibility by industry, adding pharmacies,
-and extending public transport assessments to evening off-peak times.
-AI23 facilitates seamless integration into varied analyses given the use
-of small-area official geographies.
+parks and gardens, and extending public transport estimates to evening
+off-peak times. AI23 facilitates seamless integration into varied
+analyses given the use of small-area official geographies.
 \end{abstract}
 
 \keywords{
@@ -140,17 +140,19 @@ following ways:
   Pharmacies have been added as an additional health destination in the
   AI23 dataset.
 \item
+  Public parks and gardens are included as a main recreational service.
+\item
   The public transport indicators now cover not only the morning peak
   but also the evening off-peak period.
 \end{itemize}
 
 In particular, the current dataset provides a suite of ready-to-use
 accessibility indicators to key services such as employment, general
-practices (GPs), hospitals, pharmacies, primary and secondary schools,
-supermarkets, main urban centres, and urban sub-centres. These
-indicators are available for 42,000 small area units across Great
-Britain, specifically at the Lower Super Output Area (LSOA) level in
-England and Wales, and the Data Zone (DZ) level in Scotland.
+practices (GPs), hospitals, pharmacies, parks and gardens, primary and
+secondary schools, supermarkets, main urban centres, and urban
+sub-centres. These indicators are available for 42,000 small area units
+across Great Britain, specifically at the Lower Super Output Area (LSOA)
+level in England and Wales, and the Data Zone (DZ) level in Scotland.
 
 Accessibility indicators have been used in research to examine a broad
 array of regional and urban issues, including unemployment rates in the
@@ -242,9 +244,10 @@ Destination & Total in 2022
 Employment & 30 067 975 & 30 898 620\\
 GPs & 7 887 & 7 756\\
 Hospitals & 1 510 & 1 572\\
+Parks and gardens (ha) & NA & 120 619\\
 Pharmacies & NA & 12 983\\
-Primary schools & 19 853 & 19 830\\
 \addlinespace
+Primary schools & 19 853 & 19 830\\
 Secondary schools & 3 457 & 3 466\\
 Supermarkets & 6 478 & 6 392\\
 Urban centre: Main & 182 & 182\\
@@ -297,6 +300,44 @@ employment\_arts\_18 & 18 : Arts, entertainment, recreation \& other services (R
 \end{tabu}
 \end{table}
 
+\hypertarget{hospitals}{%
+\subsubsection{Hospitals}\label{hospitals}}
+
+The sources and selection criterion to account for the location of
+hospitals remains unchanged and uses the official updated datasets
+except for Wales. In the latter case, the PTAI22 used the list of
+addresses available on the Health in Wales website
+(\url{http://www.wales.nhs.uk/}). However, this is no longer active.
+Thus, we used the locations obtained in January 2022.
+
+\hypertarget{parks-and-gardens}{%
+\subsubsection{Parks and gardens}\label{parks-and-gardens}}
+
+Public parks and gardens are included as recreational services. The
+geolocation information is sourced from the `OS Open Greenspace' dataset
+V 1.3, corresponding to April 2023 covering all of GB (available at
+\url{https://www.ordnancesurvey.co.uk/products/os-open-greenspace}).
+This product is licensed under the Open Government Licence, allowing the
+distribution of derivative works.
+
+The Open Greenspace dataset comprises two tables: `Greenspace Site' and
+`Access Point'. The former represents the outer boundaries of
+greenspaces, while the latter indicates specific entry points associated
+with these boundaries. The `Greenspace Site' table was filtered to
+include only geometries classified as `Public Park or Garden' in the
+`function' field. Subsequently, the `Access Point' table was refined
+using the linking ID from the `Greenspace Site' table.
+
+The `Greenspace Site' polygons were overlapped onto the LSOA/DZ
+geometries, with the corresponding area size in hectares (ha) being used
+as the weight (\(W_{i}\)) for the service in cumulative measures. The
+nearest park or garden was determined using the `Access Point'
+locations. It is important to note that while the boundaries represented
+in the `Greenspace Site' can indicate physical delimitations, this is
+not always the case. For the purposes of this study, it is assumed that
+if a polygon lacks a designated access point, entry is possible through
+any point along its boundary.
+
 \hypertarget{pharmacies}{%
 \subsubsection{Pharmacies}\label{pharmacies}}
 
@@ -315,16 +356,6 @@ Chains' dataset used corresponds to June 2023 (URL:
 These data contain address references including the postcode, which was
 matched with the ONS postcode dataset to assign a corresponding LSOA/DZ
 code.
-
-\hypertarget{hospitals}{%
-\subsubsection{Hospitals}\label{hospitals}}
-
-The sources and selection criterion to account for the location of
-hospitals remains unchanged and uses the official updated datasets
-except for Wales. In the latter case, the PTAI22 used the list of
-addresses available on the Health in Wales website
-(\url{http://www.wales.nhs.uk/}). However, this is no longer active.
-Thus, we used the locations obtained in January 2022.
 
 \hypertarget{travel-costs}{%
 \subsection{Travel costs}\label{travel-costs}}
@@ -353,9 +384,10 @@ The accessibility indicators can be accessed in a series of
 service within the folder structure, and by mode within the file
 nomenclature, as illustrated in the directory tree diagram provided. The
 directory structure is as follows:
-\texttt{root/{[}NAME\ OF\ SERVICE{]}/access\_{[}NAME\ OF\ SERVICE{]}\_{[}MODE{]}.csv},
-with `pt' denoting public transport in the `MODE' segment. For clarity,
-the diagram does not include the disaggregated employment measures, but
+\texttt{root/\textless{}NAME\ OF\ SERVICE\textgreater{}/access\_\textless{}NAME\ OF\ SERVICE\textgreater{}\_\textless{}MODE\textgreater{}.csv},
+with `pt' denoting public transport in the
+\texttt{\textless{}MODE\textgreater{}} segment. For clarity, the diagram
+does not include the disaggregated employment measures, but
 \protect\hyperlink{inventory}{Appendix 1} contains a comprehensive
 inventory of all files within the dataset.
 
@@ -378,6 +410,10 @@ inventory of all files within the dataset.
 ## |   +-- access_main_bua_bicycle.csv
 ## |   +-- access_main_bua_pt.csv
 ## |   \-- access_main_bua_walk.csv
+## +-- parks
+## |   +-- access_parks_bicycle.csv
+## |   +-- access_parks_pt.csv
+## |   \-- access_parks_walk.csv
 ## +-- pharmacies
 ## |   +-- access_pharmacies_bicycle.csv
 ## |   +-- access_pharmacies_pt.csv
@@ -401,7 +437,7 @@ inventory of all files within the dataset.
 ## \-- variable_descriptor.csv
 \end{verbatim}
 
-Table 3 presents the structure and contents of each file as otulined in
+Table 3 presents the structure and contents of each file as outlined in
 the diagram. The first column contains the 2011 Census LSOA/DZ code. The
 `mode' column specifies the form of transport used to calculate the
 indicators. The `time\_of\_day' column, exclusive to public transport
@@ -409,12 +445,12 @@ measures, indicates the departure time -- either `am' or `pm' -- for
 which the estimates are made. The prefix `accessibility' in the column
 headers denotes cumulative measures, provided across eight 15-minute
 intervals ranging from 15 to 120 minutes. Relative measures are denoted
-by a `pct' suffix. The column `nearest\_{[}NAME OF SERVICE{]}' shows the
-travel time in minutes to the closest service of type \(k\). This column
-is not applicable for employment, as these figures are aggregated from
-the source.
+by a `pct' suffix. The column `nearest\_' shows the travel time in
+minutes to the closest service of type \(k\). This column is not
+applicable for employment, as these figures are aggregated from the
+source.
 
-\begin{table}[!h]
+\begin{table}[H]
 
 \caption{\label{tab:unnamed-chunk-5}Variable descriptor}
 \centering
@@ -425,26 +461,26 @@ Variable & Description\\
 geo\_code & 2011 LSOA/DZ geo-code of origin\\
 mode & Mode of transport used for the indicators, values: `pt' = public transport, `bicycle', `walk'\\
 time\_of\_day & Time of departure, values: `am' = 7 a.m., `pm' = 9 p.m. Available for public transport only.\\
-access\_[NAME OF SERVICE]\_15 & Cumulative accessibility: Number of services of type k within 15 minutes\\
-access\_[NAME OF SERVICE]\_30 & Cumulative accessibility: Number of services of type k within 30 minutes\\
+access\_<NAME OF SERVICE>\_15 & Cumulative accessibility: Number of services of type k within 15 minutes\\
+access\_<NAME OF SERVICE>\_30 & Cumulative accessibility: Number of services of type k within 30 minutes\\
 \addlinespace
-access\_[NAME OF SERVICE]\_45 & Cumulative accessibility: Number of services of type k within 45 minutes\\
-access\_[NAME OF SERVICE]\_60 & Cumulative accessibility: Number of services of type k within 60 minutes\\
-access\_[NAME OF SERVICE]\_75 & Cumulative accessibility: Number of services of type k within 75 minutes\\
-access\_[NAME OF SERVICE]\_90 & Cumulative accessibility: Number of services of type k within 90 minutes\\
-access\_[NAME OF SERVICE]\_105 & Cumulative accessibility: Number of services of type k within 105 minutes\\
+access\_<NAME OF SERVICE>\_45 & Cumulative accessibility: Number of services of type k within 45 minutes\\
+access\_<NAME OF SERVICE>\_60 & Cumulative accessibility: Number of services of type k within 60 minutes\\
+access\_<NAME OF SERVICE>\_75 & Cumulative accessibility: Number of services of type k within 75 minutes\\
+access\_<NAME OF SERVICE>\_90 & Cumulative accessibility: Number of services of type k within 90 minutes\\
+access\_<NAME OF SERVICE>\_105 & Cumulative accessibility: Number of services of type k within 105 minutes\\
 \addlinespace
-access\_[NAME OF SERVICE]\_120 & Cumulative accessibility: Number of services of type k within 120 minutes\\
-access\_[NAME OF SERVICE]\_15\_pct & Relative cumulative accessibility: Number of services of type k within 15 minutes. In percent, from 0 to 100.\\
-access\_[NAME OF SERVICE]\_30\_pct & Relative cumulative accessibility: Number of services of type k within 30 minutes. In percent, from 0 to 100.\\
-access\_[NAME OF SERVICE]\_45\_pct & Relative cumulative accessibility: Number of services of type k within 45 minutes. In percent, from 0 to 100.\\
-access\_[NAME OF SERVICE]\_60\_pct & Relative cumulative accessibility: Number of services of type k within 60 minutes. In percent, from 0 to 100.\\
+access\_<NAME OF SERVICE>\_120 & Cumulative accessibility: Number of services of type k within 120 minutes\\
+access\_<NAME OF SERVICE>\_15\_pct & Relative cumulative accessibility: Number of services of type k within 15 minutes. In percent, from 0 to 100.\\
+access\_<NAME OF SERVICE>\_30\_pct & Relative cumulative accessibility: Number of services of type k within 30 minutes. In percent, from 0 to 100.\\
+access\_<NAME OF SERVICE>\_45\_pct & Relative cumulative accessibility: Number of services of type k within 45 minutes. In percent, from 0 to 100.\\
+access\_<NAME OF SERVICE>\_60\_pct & Relative cumulative accessibility: Number of services of type k within 60 minutes. In percent, from 0 to 100.\\
 \addlinespace
-access\_[NAME OF SERVICE]\_75\_pct & Relative cumulative accessibility: Number of services of type k within 75 minutes. In percent, from 0 to 100.\\
-access\_[NAME OF SERVICE]\_90\_pct & Relative cumulative accessibility: Number of services of type k within 90 minutes. In percent, from 0 to 100.\\
-access\_[NAME OF SERVICE]\_105\_pct & Relative cumulative accessibility: Number of services of type k within 105 minutes. In percent, from 0 to 100.\\
-access\_[NAME OF SERVICE]\_120\_pct & Relative cumulative accessibility: Number of services of type k within 120 minutes. In percent, from 0 to 100.\\
-nearest\_[NAME OF SERVICE] & Travel time in minutes to the nearest service of type k\\
+access\_<NAME OF SERVICE>\_75\_pct & Relative cumulative accessibility: Number of services of type k within 75 minutes. In percent, from 0 to 100.\\
+access\_<NAME OF SERVICE>\_90\_pct & Relative cumulative accessibility: Number of services of type k within 90 minutes. In percent, from 0 to 100.\\
+access\_<NAME OF SERVICE>\_105\_pct & Relative cumulative accessibility: Number of services of type k within 105 minutes. In percent, from 0 to 100.\\
+access\_<NAME OF SERVICE>\_120\_pct & Relative cumulative accessibility: Number of services of type k within 120 minutes. In percent, from 0 to 100.\\
+nearest\_<NAME OF SERVICE> & Travel time in minutes to the nearest service of type k\\
 \bottomrule
 \end{tabu}
 \end{table}
@@ -458,16 +494,32 @@ greater number of services at longer travel times (over 45 minutes).
 However, for travel times less than 45 minutes, accessibility levels are
 similar between bicycle and public transport, and for some services
 within 30 minutes or less---such as Manufacturing (C) and Motor trades
-(Part G) employment, secondary schools, and supermarkets---accessibility
-is even higher for bicycle. As expected, walking is a competitive mode
-only at shorter distances.
+(Part G) employment, parks, and supermarkets---accessibility is even
+higher for bicycle. As expected, walking is a competitive mode only at
+shorter distances.
 
-\begin{figure}
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=1.0\textwidth]{../plots/line_plot_comaprison.jpg}
   \caption{Relative accessibility overview to key services for various modes.}
   \footnotesize{\textit{Source:} the author based on AI23 dataset.}
   \label{fig:access-overview}
+\end{figure}
+
+Figure \ref{fig:access-parks} illustrates the accessibility to public
+parks and gardens in Greater Manchester Area within 30 minutes by
+bicycle and public transport at the morning peak. The map reveals
+contrasting differences. The main difference are particularly noticeable
+in the south of the city. In this area, accessibility is higher by
+bicycle than by public transport. Conversely, the core area has higher
+access by public transport.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{../plots/parks_map.jpg}
+  \caption{Accessibility to public parks or gardens in Manchester area within 30 minutes by bicycle and public transport.}
+  \footnotesize{\textit{Source:} the author based on AI23 dataset. Contains OS and OSM data.}
+  \label{fig:access-parks}
 \end{figure}
 
 \hypertarget{usage-notes}{%
@@ -517,13 +569,15 @@ Additionally, these insights can guide modal integration policies,
 favoring the development of bicycle infrastructure when it presents as a
 more cost-effective option than expanding public transport.
 
-\begin{figure}
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth]{../plots/pt_vs_bike_map}
   \caption{Accessibiility to employment comparison between bicycle and public transport in London.}
   \footnotesize{\textit{Source:} the author based on AI23 dataset.}
   \label{fig:bike-comparison}
 \end{figure}
+
+\pagebreak
 
 \hypertarget{code-availability}{%
 \section*{Code availability}\label{code-availability}}
@@ -615,7 +669,7 @@ Path & Type & Size\\
 ./employment\_mining\_2 & directory & 0\\
 \addlinespace
 ./employment\_mining\_2/access\_employment\_mining\_2\_bicycle.csv & file & 4.04M\\
-./employment\_mining\_2/access\_employment\_mining\_2\_pt.csv & file & 2.88M\\
+./employment\_mining\_2/access\_employment\_mining\_2\_pt.csv & file & 7.97M\\
 ./employment\_mining\_2/access\_employment\_mining\_2\_walk.csv & file & 3.73M\\
 ./employment\_motor\_5 & directory & 0\\
 ./employment\_motor\_5/access\_employment\_motor\_5\_bicycle.csv & file & 4.24M\\
@@ -660,33 +714,38 @@ Path & Type & Size\\
 ./hospitals/access\_hospitals\_bicycle.csv & file & 3.39M\\
 ./hospitals/access\_hospitals\_pt.csv & file & 6.68M\\
 ./hospitals/access\_hospitals\_walk.csv & file & 3.07M\\
-./inventory.csv & file & 6.89K\\
+./inventory.csv & file & 6.64K\\
 \addlinespace
 ./main\_bua & directory & 0\\
 ./main\_bua/access\_main\_bua\_bicycle.csv & file & 2.82M\\
 ./main\_bua/access\_main\_bua\_pt.csv & file & 5.89M\\
 ./main\_bua/access\_main\_bua\_walk.csv & file & 2.43M\\
-./pharmacies & directory & 0\\
+./parks & directory & 0\\
 \addlinespace
+./parks/access\_parks\_bicycle.csv & file & 8.45M\\
+./parks/access\_parks\_pt.csv & file & 16.67M\\
+./parks/access\_parks\_walk.csv & file & 8.22M\\
+./pharmacies & directory & 0\\
 ./pharmacies/access\_pharmacies\_bicycle.csv & file & 4M\\
+\addlinespace
 ./pharmacies/access\_pharmacies\_pt.csv & file & 7.9M\\
 ./pharmacies/access\_pharmacies\_walk.csv & file & 3.83M\\
 ./primary\_schools & directory & 0\\
 ./primary\_schools/access\_primary\_schools\_bicycle.csv & file & 3.94M\\
-\addlinespace
 ./primary\_schools/access\_primary\_schools\_pt.csv & file & 7.78M\\
+\addlinespace
 ./primary\_schools/access\_primary\_schools\_walk.csv & file & 3.72M\\
 ./secondary\_schools & directory & 0\\
 ./secondary\_schools/access\_secondary\_schools\_bicycle.csv & file & 3.63M\\
 ./secondary\_schools/access\_secondary\_schools\_pt.csv & file & 7.13M\\
-\addlinespace
 ./secondary\_schools/access\_secondary\_schools\_walk.csv & file & 3.37M\\
+\addlinespace
 ./sub\_bua & directory & 0\\
 ./sub\_bua/access\_sub\_bua\_bicycle.csv & file & 3.16M\\
 ./sub\_bua/access\_sub\_bua\_pt.csv & file & 6.35M\\
 ./sub\_bua/access\_sub\_bua\_walk.csv & file & 2.79M\\
-\addlinespace
 ./supermarkets & directory & 0\\
+\addlinespace
 ./supermarkets/access\_supermarkets\_bicycle.csv & file & 3.72M\\
 ./supermarkets/access\_supermarkets\_pt.csv & file & 7.35M\\
 ./supermarkets/access\_supermarkets\_walk.csv & file & 3.48M\\
