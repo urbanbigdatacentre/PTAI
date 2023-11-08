@@ -18,7 +18,6 @@ ttwa <- st_read('data/uk_gov/ttwa2011_pop.gpkg')
 centroids <- st_read('data/centroids/gb_lsoa_centroid2011.gpkg')
 
 
-
 # Spatially join TTWA to centroids ----------------------------------------
 
 # Identify cities
@@ -42,7 +41,7 @@ ttwa_lookup <- centroids %>%
 
 # Format accessibility measures -------------------------------------------
 
-# Keep realtive cum accessibility measures only
+# Keep relative cum accessibility measures only
 access_relative <- access_list %>% 
   map(select, -contains('nearest'), -matches('[0-9]$'))
 
@@ -94,16 +93,6 @@ summary1 <- access_relative %>%
     access_q3 = quantile(accessibility, 0.75)
   ) %>% 
   ungroup()
-
-
-summary1 %>% 
-  filter(time_cut <= 60) %>% 
-  mutate(
-    mode = factor(factor, labels = mode_labs),
-    service = gsub('_(?=[a-z])', '\n', service, perl = TRUE),
-    service = gsub('_', ' ', service, perl = TRUE),
-    service = str_to_sentence(service)
-  ) 
 
 # LinePlot: accessibility by time cut
 line_plot_comaprison <- summary1 %>% 
@@ -202,6 +191,76 @@ ggsave(
   height = 5, 
   width = 9
 )
+
+
+# Access to parks ---------------------------------------------------------
+
+library(osmdata)
+
+
+# Select access to parks only
+access_parks <- access_list[grepl('park', file_paths)] %>% 
+  bind_rows() %>% 
+  left_join(lookup, by = c('geo_code' = 'lsoa11cd')) %>% 
+  mutate(time_of_day =  if_else(is.na(time_of_day), 'am', time_of_day))
+
+# Define area to visualize
+centre <- centroids %>% 
+  filter(geo_code == 'E01033653') %>% 
+  st_buffer(10e3)
+
+# Select mode and target areas
+selected_access_park <- access_parks %>% 
+  filter(mode == 'bicycle' | (mode == 'pt' & time_of_day == 'am')) %>% 
+  left_join(lsoa_geoms, by = 'geo_code') %>% 
+  st_as_sf() %>% 
+  filter(st_intersects(., centre, sparse = FALSE))
+
+# Get roadnetwork
+bbox <- selected_access_park %>% 
+  st_transform(4326) %>% 
+  st_bbox()
+type_roads <- c('motorway', 'trunk')
+raodnetwork <- opq(bbox = bbox) %>%
+  add_osm_feature(key = 'highway', value = type_roads) %>% 
+  osmdata_sf()
+raodnetwork <- raodnetwork$osm_lines %>% 
+  st_transform(crs = 27700)
+
+# Plot map
+access_parks <- selected_access_park %>% 
+  mutate(
+    mode = factor(mode, labels = c('Bicycle', 'Public transport'))
+  ) %>%
+  ggplot() +
+  geom_sf(aes(fill = access_parks_30), col = NA) +
+  geom_sf(data = raodnetwork, col = 'gray70') +
+  scale_fill_distiller(
+    palette = "Greens", 
+    direction = 1, 
+    guide = guide_legend(label.theme = element_text(angle = 0))
+  ) +
+  labs(
+    title = 'Accessibility to public parks or gardens in Manchester', 
+    subtitle = 'Cumulative public park or garden surface reacheable within 30 minutes\n',
+    fill = 'Park or gardens\n(hectares)', 
+    caption = 'Contains OS data © Crown copyrigh, and OpenStreetMap data.' 
+  ) +
+  facet_wrap(~mode) +
+  theme_void() +
+  theme(legend.position = 'bottom')
+
+# Save map
+ggsave(
+  filename = 'plots/parks_map.jpg', 
+  plot = access_parks, 
+  dpi = 400, 
+  height = 5, 
+  width = 9
+)
+
+
+
 
 
 # Nearest facility  -------------------------------------------------------
