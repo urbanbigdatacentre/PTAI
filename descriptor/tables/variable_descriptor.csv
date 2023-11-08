@@ -2,20 +2,20 @@ Variable,Description
 geo_code,2011 LSOA/DZ geo-code of origin
 mode,"Mode of transport used for the indicators, values: `pt' = public transport, `bicycle', `walk'"
 time_of_day,"Time of departure, values: `am' = 7 a.m., `pm' = 9 p.m. Available for public transport only. "
-access_[NAME OF SERVICE]_15,Cumulative accessibility: Number of services of type k within 15 minutes
-access_[NAME OF SERVICE]_30,Cumulative accessibility: Number of services of type k within 30 minutes
-access_[NAME OF SERVICE]_45,Cumulative accessibility: Number of services of type k within 45 minutes
-access_[NAME OF SERVICE]_60,Cumulative accessibility: Number of services of type k within 60 minutes
-access_[NAME OF SERVICE]_75,Cumulative accessibility: Number of services of type k within 75 minutes
-access_[NAME OF SERVICE]_90,Cumulative accessibility: Number of services of type k within 90 minutes
-access_[NAME OF SERVICE]_105,Cumulative accessibility: Number of services of type k within 105 minutes
-access_[NAME OF SERVICE]_120,Cumulative accessibility: Number of services of type k within 120 minutes
-access_[NAME OF SERVICE]_15_pct,"Relative cumulative accessibility: Number of services of type k within 15 minutes. In percent, from 0 to 100."
-access_[NAME OF SERVICE]_30_pct,"Relative cumulative accessibility: Number of services of type k within 30 minutes. In percent, from 0 to 100."
-access_[NAME OF SERVICE]_45_pct,"Relative cumulative accessibility: Number of services of type k within 45 minutes. In percent, from 0 to 100."
-access_[NAME OF SERVICE]_60_pct,"Relative cumulative accessibility: Number of services of type k within 60 minutes. In percent, from 0 to 100."
-access_[NAME OF SERVICE]_75_pct,"Relative cumulative accessibility: Number of services of type k within 75 minutes. In percent, from 0 to 100."
-access_[NAME OF SERVICE]_90_pct,"Relative cumulative accessibility: Number of services of type k within 90 minutes. In percent, from 0 to 100."
-access_[NAME OF SERVICE]_105_pct,"Relative cumulative accessibility: Number of services of type k within 105 minutes. In percent, from 0 to 100."
-access_[NAME OF SERVICE]_120_pct,"Relative cumulative accessibility: Number of services of type k within 120 minutes. In percent, from 0 to 100."
-nearest_[NAME OF SERVICE],Travel time in minutes to the nearest service of type k
+access_<NAME OF SERVICE>_15,Cumulative accessibility: Number of services of type k within 15 minutes
+access_<NAME OF SERVICE>_30,Cumulative accessibility: Number of services of type k within 30 minutes
+access_<NAME OF SERVICE>_45,Cumulative accessibility: Number of services of type k within 45 minutes
+access_<NAME OF SERVICE>_60,Cumulative accessibility: Number of services of type k within 60 minutes
+access_<NAME OF SERVICE>_75,Cumulative accessibility: Number of services of type k within 75 minutes
+access_<NAME OF SERVICE>_90,Cumulative accessibility: Number of services of type k within 90 minutes
+access_<NAME OF SERVICE>_105,Cumulative accessibility: Number of services of type k within 105 minutes
+access_<NAME OF SERVICE>_120,Cumulative accessibility: Number of services of type k within 120 minutes
+access_<NAME OF SERVICE>_15_pct,"Relative cumulative accessibility: Number of services of type k within 15 minutes. In percent, from 0 to 100."
+access_<NAME OF SERVICE>_30_pct,"Relative cumulative accessibility: Number of services of type k within 30 minutes. In percent, from 0 to 100."
+access_<NAME OF SERVICE>_45_pct,"Relative cumulative accessibility: Number of services of type k within 45 minutes. In percent, from 0 to 100."
+access_<NAME OF SERVICE>_60_pct,"Relative cumulative accessibility: Number of services of type k within 60 minutes. In percent, from 0 to 100."
+access_<NAME OF SERVICE>_75_pct,"Relative cumulative accessibility: Number of services of type k within 75 minutes. In percent, from 0 to 100."
+access_<NAME OF SERVICE>_90_pct,"Relative cumulative accessibility: Number of services of type k within 90 minutes. In percent, from 0 to 100."
+access_<NAME OF SERVICE>_105_pct,"Relative cumulative accessibility: Number of services of type k within 105 minutes. In percent, from 0 to 100."
+access_<NAME OF SERVICE>_120_pct,"Relative cumulative accessibility: Number of services of type k within 120 minutes. In percent, from 0 to 100."
+nearest_<NAME OF SERVICE>,Travel time in minutes to the nearest service of type k
