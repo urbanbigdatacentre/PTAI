@@ -8,11 +8,16 @@ The indicators correspond to the first quarter of 2023. The geographic coverage 
 
 The dataset provides a suite of ready-to-use accessibility indicators to key services such as employment, general practices (GPs), hospitals, pharmacies, primary and secondary schools, supermarkets, main urban centres, and urban sub-centres. These indicators are available for 42,000 small area units across Great Britain, specifically at the Lower Super Output Area (LSOA) level in England and Wales, and the Data Zone (DZ) level in Scotland.
 
+A full data descriptor is available at: <https://osf.io/preprints/socarxiv/qb9j4>.
+
 Download dataset at: <https://data.ubdc.ac.uk/dataset/accessibility-indicators>
+
+![Overview](plots/line_plot_comaprison.jpg)
+
 
 ## Related resources and inputs
 
-1. Data descriptor: <https://osf.io/preprints/socarxiv/qb9j4>
+1. Data descriptor preprint: <https://osf.io/preprints/socarxiv/qb9j4>
 2. The travel time matrices for Great Britain (<https://github.com/urbanbigdatacentre/ttm_greatbritain>). This includes  various modes, namely: public transport, walk, and bicycle.
 3. The location of the services are based on the PTAI22 project (<https://github.com/urbanbigdatacentre/access_uk_open>).
 4. The indices are estimated using the `AccessUK` package (<https://github.com/urbanbigdatacentre/AccessUK>).
