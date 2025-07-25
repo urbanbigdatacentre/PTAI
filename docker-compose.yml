@@ -1,0 +1,122 @@
+version: "3.8"
+
+services:
+  # Main analysis service
+  ptai-analysis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ubdc/ptai-analysis:latest
+    container_name: ptai-analysis
+
+    # Environment variables
+    environment:
+      - TZ=Europe/London
+      - R_REPOS=https://cran.rstudio.com
+
+    # Volume mounts
+    volumes:
+      # Mount your data directory (REQUIRED)
+      - "${PTAI_DATA_PATH:-./data}:/workspace/data:ro"
+      # Mount output directory for results
+      - "${PTAI_OUTPUT_PATH:-./output}:/workspace/output"
+      # Mount plots directory
+      - "${PTAI_PLOTS_PATH:-./plots}:/workspace/plots"
+      # Mount logs directory
+      - "${PTAI_LOGS_PATH:-./logs}:/workspace/logs"
+
+    # Entry point
+    entrypoint: ["/workspace/docker_entrypoint.sh"]
+    command: ["analysis"]
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: "4"
+        reservations:
+          memory: 4G
+          cpus: "2"
+
+    # Restart policy
+    restart: "no"
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+
+  # Interactive development service
+  ptai-interactive:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ubdc/ptai-analysis:latest
+    container_name: ptai-interactive
+
+    environment:
+      - TZ=Europe/London
+      - R_REPOS=https://cran.rstudio.com
+
+    volumes:
+      - "${PTAI_DATA_PATH:-./data}:/workspace/data"
+      - "${PTAI_OUTPUT_PATH:-./output}:/workspace/output"
+      - "${PTAI_PLOTS_PATH:-./plots}:/workspace/plots"
+      - "${PTAI_LOGS_PATH:-./logs}:/workspace/logs"
+      # Mount entire project for development
+      - ".:/workspace"
+
+    entrypoint: ["/workspace/docker_entrypoint.sh"]
+    command: ["interactive"]
+
+    # Keep container running
+    tty: true
+    stdin_open: true
+
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: "4"
+
+    restart: "no"
+
+  # RStudio Server service (optional)
+  ptai-rstudio:
+    build:
+      context: .
+      dockerfile: Dockerfile.rstudio
+    image: ubdc/ptai-rstudio:latest
+    container_name: ptai-rstudio
+
+    environment:
+      - DISABLE_AUTH=true
+      - ROOT=TRUE
+      - TZ=Europe/London
+
+    ports:
+      - "8787:8787"
+
+    volumes:
+      - "${PTAI_DATA_PATH:-./data}:/workspace/data:ro"
+      - "${PTAI_OUTPUT_PATH:-./output}:/workspace/output"
+      - "${PTAI_PLOTS_PATH:-./plots}:/workspace/plots"
+      - ".:/workspace"
+
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: "4"
+
+    restart: unless-stopped
+
+    profiles:
+      - rstudio
+
+networks:
+  default:
+    name: ptai-network
