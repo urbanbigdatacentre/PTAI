@@ -1,0 +1,24 @@
+# Ignore environment files
+.env
+
+# Ignore Docker-related files
+.dockerignore
+
+# Ignore large data files
+data/*
+!data/.gitignore
+
+# Ignore output files
+output/*
+logs/*
+
+# Ignore temporary files
+*.tmp
+*.log
+.Rhistory
+.RData
+.Ruserdata
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
