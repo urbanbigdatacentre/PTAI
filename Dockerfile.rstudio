@@ -1,0 +1,44 @@
+# RStudio Server Docker Image for PTAI Analysis
+FROM rocker/rstudio:4.3.0
+
+# Install same dependencies as main Dockerfile
+RUN apt-get update && apt-get install -y \
+  curl \
+  wget \
+  git \
+  vim \
+  nano \
+  htop \
+  build-essential \
+  cmake \
+  libcurl4-openssl-dev \
+  libssl-dev \
+  libxml2-dev \
+  libgdal-dev \
+  libgeos-dev \
+  libproj-dev \
+  libudunits2-dev \
+  libv8-dev \
+  libprotobuf-dev \
+  protobuf-compiler \
+  libjq-dev \
+  texlive-latex-base \
+  texlive-latex-recommended \
+  texlive-latex-extra \
+  texlive-fonts-recommended \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy the R package installation script
+COPY install_packages_rstudio.R /tmp/install_packages_rstudio.R
+
+# Install all R packages using the script
+RUN Rscript /tmp/install_packages_rstudio.R && rm /tmp/install_packages_rstudio.R
+
+# Set working directory
+WORKDIR /workspace
+
+# Copy project files
+COPY . /workspace/
+
+# Set proper ownership
+RUN chown -R rstudio:rstudio /workspace
