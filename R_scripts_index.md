@@ -4,8 +4,8 @@ This table lists all R scripts in the `R/` folder, with columns for the date and
 
 | Script Name                | Relative Path                        | Date Loaded | Data URL |
 |---------------------------|--------------------------------------|-------------|----------|
-| 01_gp_practice.r          | R/01_gp_practice.r                   |  Quarterly  |   [Link](https://www.opendata.nhs.scot/dataset/gp-practice-contact-details-and-list-sizes)   |
-| 02_supermarkets.r         | R/02_supermarkets.r                  |             |          |
+| 01_gp_practice.r          | R/01_gp_practice.r                   |  Quarterly, Montlhy (UK)  |   [Scotland](https://www.opendata.nhs.scot/dataset/gp-practice-contact-details-and-list-sizes), [UK](https://digital.nhs.uk/services/organisation-data-service/data-search-and-export/csv-downloads/gp-and-gp-practice-related-data)   |
+| 02_supermarkets.r         | R/02_supermarkets.r                  |             |   Link   |
 | 03_employment.R           | R/03_employment.R                    |             |          |
 | 04_schools.r              | R/04_schools.r                       |             |          |
 | 05_urban_centre.r         | R/05_urban_centre.r                  |             |          |
