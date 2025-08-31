@@ -4,7 +4,7 @@ This table lists all R scripts in the `R/` folder, with columns for the date and
 
 | Script Name                | Relative Path                        | Date Loaded | Data URL |
 |---------------------------|--------------------------------------|-------------|----------|
-| 01_gp_practice.r          | R/01_gp_practice.r                   |             |          |
+| 01_gp_practice.r          | R/01_gp_practice.r                   |  Quarterly  |   [Link](https://www.opendata.nhs.scot/dataset/gp-practice-contact-details-and-list-sizes)   |
 | 02_supermarkets.r         | R/02_supermarkets.r                  |             |          |
 | 03_employment.R           | R/03_employment.R                    |             |          |
 | 04_schools.r              | R/04_schools.r                       |             |          |
