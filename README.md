@@ -1,7 +1,7 @@
 # Great Britain Accessibility Indicators
 
 
-The indicators correspond to the first quarter of 2023. The geographic coverage includes England, Scotland, and Wales. The geographic unit used is the 2011 LSOA/DZ version.
+The geographic coverage includes England, Scotland, and Wales. The geographic unit used is the 2011 LSOA/DZ version.
 
 ## Dataset
 
@@ -299,4 +299,5 @@ If use the dataset cite:
 ## Acknowledgement
 
 This work was made possible by ESRC’s on-going support for the Urban Big Data Centre [ES/L011921/1 and ES/S007105/1].
+
 
