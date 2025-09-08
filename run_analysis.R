@@ -10,7 +10,7 @@
 
 # Master script to run all accessibility analysis steps
 # Created: 2025-07-23
-# Author: Automated script generator
+# Author: ErmiaHP
 
 # Load required libraries for logging
 library(tidyverse)
